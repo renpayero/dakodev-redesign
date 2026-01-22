@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dakolab | Desarrollo de Software a Medida y ERP</title>
+    <meta
+      name="description"
+      content="Expertos en desarrollo de software ERP a medida y landing pages de alto impacto. Transforma tu negocio con tecnología de vanguardia."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              dark: {
+                DEFAULT: "#05080a",
+                lighter: "#0a0f14",
+                card: "rgba(10, 15, 20, 0.7)",
+              },
+              accent: {
+                cyan: "#00f5d4",
+                blue: "#00b4d8",
+                teal: "#00d1b2",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              heading: ["Outfit", "sans-serif"],
+            },
+            backgroundImage: {
+              "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+      body {
+        background-color: #05080a;
+        color: #ffffff;
+        overflow-x: hidden;
+      }
+
+      .glass {
+        background: rgba(10, 15, 20, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .glow-text {
+        text-shadow: 0 0 20px rgba(0, 245, 212, 0.5);
+      }
+
+      .glow-border:hover {
+        border-color: rgba(0, 245, 212, 0.5);
+        box-shadow: 0 0 20px rgba(0, 245, 212, 0.2);
+      }
+
+      .bg-mesh {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background-image:
+          radial-gradient(
+            at 0% 0%,
+            rgba(0, 245, 212, 0.15) 0px,
+            transparent 50%
+          ),
+          radial-gradient(
+            at 100% 0%,
+            rgba(0, 180, 216, 0.15) 0px,
+            transparent 50%
+          ),
+          radial-gradient(
+            at 100% 100%,
+            rgba(0, 245, 212, 0.1) 0px,
+            transparent 50%
+          ),
+          radial-gradient(
+            at 0% 100%,
+            rgba(0, 180, 216, 0.1) 0px,
+            transparent 50%
+          );
+      }
+
+      .hero-title span {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      .cursor-glow {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(0, 245, 212, 0.08) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.3s,
+          height 0.3s;
+      }
+    </style>
+  </head>
+  <body class="font-sans antialiased">
+    <div class="bg-mesh"></div>
+    <div id="cursor" class="cursor-glow hidden md:block"></div>
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 glass border-b border-white/5">
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center space-x-2">
+          <div
+            class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-cyan to-accent-blue flex items-center justify-center shadow-lg shadow-accent-cyan/20"
+          >
+            <span class="text-dark font-black text-xl">D</span>
+          </div>
+          <span class="font-heading font-bold text-2xl tracking-tight"
+            >Dakolab</span
+          >
+        </div>
+
+        <div
+          class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest text-gray-400"
+        >
+          <a href="#inicio" class="hover:text-accent-cyan transition-colors"
+            >Inicio</a
+          >
+          <a href="#servicios" class="hover:text-accent-cyan transition-colors"
+            >Servicios</a
+          >
+          <a
+            href="#trayectoria"
+            class="hover:text-accent-cyan transition-colors"
+            >Trayectoria</a
+          >
+          <a href="#contacto" class="hover:text-accent-cyan transition-colors"
+            >Contacto</a
+          >
+        </div>
+
+        <a
+          href="https://wa.me/5492477610100"
+          class="px-6 py-2 bg-accent-cyan text-dark font-bold rounded-full hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg shadow-accent-cyan/20"
+        >
+          Empecemos
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section
+        id="inicio"
+        class="min-h-screen flex items-center pt-20 relative overflow-hidden"
+      >
+        <div class="container mx-auto px-6 text-center relative z-10">
+          <div
+            class="inline-block px-4 py-1.5 mb-6 glass rounded-full border border-accent-cyan/20 text-accent-cyan text-sm font-semibold tracking-wide uppercase"
+          >
+            Premium Software Development
+          </div>
+          <h1
+            class="hero-title font-heading text-5xl md:text-8xl font-extrabold mb-8 leading-tight"
+          >
+            <span class="block">Desarrollo de</span>
+            <span
+              class="block text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan to-accent-blue glow-text"
+              >software a medida</span
+            >
+          </h1>
+          <p
+            class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed hero-content"
+          >
+            En Dakolab transformamos procesos complejos en soluciones digitales
+            intuitivas. Especialistas en ERPs inteligentes y landing pages que
+            convierten.
+          </p>
+          <div
+            class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6 hero-actions"
+          >
+            <a
+              href="#servicios"
+              class="px-8 py-4 bg-white text-dark font-bold rounded-xl hover:bg-accent-cyan transition-all duration-300 w-full md:w-auto"
+            >
+              Ver Soluciones
+            </a>
+            <a
+              href="#trayectoria"
+              class="px-8 py-4 glass text-white font-bold rounded-xl hover:border-accent-cyan transition-all duration-300 w-full md:w-auto"
+            >
+              Nuestra Trayectoria
+            </a>
+          </div>
+        </div>
+
+        <!-- Abstract background elements -->
+        <div
+          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-cyan/5 rounded-full blur-[120px] pointer-events-none"
+        ></div>
+      </section>
+
+      <!-- Services Section -->
+      <section id="servicios" class="py-24 bg-dark-lighter/50">
+        <div class="container mx-auto px-6">
+          <div
+            class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6"
+          >
+            <div class="max-w-2xl">
+              <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4">
+                Nuestras <span class="text-accent-cyan">Verticales</span>
+              </h2>
+              <p class="text-gray-400 text-lg">
+                Combinamos ingeniería de sistemas con diseño de vanguardia para
+                entregar productos excepcionales.
+              </p>
+            </div>
+            <div
+              class="text-accent-cyan font-bold tracking-widest uppercase text-sm"
+            >
+              Especialización
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
+            <!-- Service 1: ERP -->
+            <div
+              class="service-card glass p-8 md:p-12 rounded-3xl glow-border transition-all duration-500 group flex flex-col h-full"
+            >
+              <div
+                class="w-16 h-16 bg-accent-cyan/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-accent-cyan transition-all duration-500"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-8 h-8 text-accent-cyan group-hover:text-dark transition-colors"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                  />
+                </svg>
+              </div>
+              <h3 class="font-heading text-3xl font-bold mb-4">
+                Sistemas ERP Inteligentes
+              </h3>
+              <p class="text-gray-400 text-lg mb-8 flex-grow">
+                Implementamos y personalizamos soluciones basadas en Odoo.
+                Optimizamos cada proceso de tu negocio con automatización,
+                integración de datos y visión analítica. Especialistas en Odoo
+                17 & 18.
+              </p>
+              <ul class="space-y-3 mb-8 text-sm text-gray-300">
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-accent-cyan rounded-full mr-3"></span>
+                  Módulos a medida (Python)
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-accent-cyan rounded-full mr-3"></span>
+                  Migración de datos y consultoría
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-accent-cyan rounded-full mr-3"></span>
+                  Implementación End-to-End
+                </li>
+              </ul>
+              <div class="pt-6 border-t border-white/5">
+                <span
+                  class="text-accent-cyan font-semibold flex items-center group-hover:translate-x-2 transition-transform cursor-pointer"
+                >
+                  Consultar Plan
+                  <svg
+                    class="w-5 h-5 ml-2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </div>
+
+            <!-- Service 2: Landing Pages -->
+            <div
+              class="service-card glass p-8 md:p-12 rounded-3xl glow-border transition-all duration-500 group flex flex-col h-full"
+            >
+              <div
+                class="w-16 h-16 bg-accent-blue/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-accent-blue transition-all duration-500"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-8 h-8 text-accent-blue group-hover:text-dark transition-colors"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+                  />
+                </svg>
+              </div>
+              <h3 class="font-heading text-3xl font-bold mb-4">
+                Landing Pages Premium
+              </h3>
+              <p class="text-gray-400 text-lg mb-8 flex-grow">
+                Diseñamos experiencias web de impacto que no solo se ven
+                increíbles, sino que están optimizadas para la conversión.
+                Animaciones fluidas, rendimiento SEO y diseño responsivo de
+                primer nivel.
+              </p>
+              <ul class="space-y-3 mb-8 text-sm text-gray-300">
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-accent-blue rounded-full mr-3"></span>
+                  Alta performance & Core Web Vitals
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-accent-blue rounded-full mr-3"></span>
+                  Experiencia de Usuario (UX) Premium
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-accent-blue rounded-full mr-3"></span>
+                  Despliegue en Docker/VPS
+                </li>
+              </ul>
+              <div class="pt-6 border-t border-white/5">
+                <span
+                  class="text-accent-blue font-semibold flex items-center group-hover:translate-x-2 transition-transform cursor-pointer"
+                >
+                  Ver Portfolio
+                  <svg
+                    class="w-5 h-5 ml-2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trajectory Section -->
+      <section id="trayectoria" class="py-24 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-16">
+            <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6">
+              Nuestra <span class="text-accent-cyan">Experiencia</span>
+            </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">
+              Liderado por Renzo Payero, Ingeniero en Sistemas enfocado en la
+              excelencia técnica y operativa.
+            </p>
+          </div>
+
+          <div class="max-w-4xl mx-auto space-y-8">
+            <!-- Exp 1 -->
+            <div
+              class="trajectory-item glass p-8 rounded-2xl relative overflow-hidden group"
+            >
+              <div
+                class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-accent-cyan to-accent-blue"
+              ></div>
+              <div
+                class="flex flex-col md:flex-row md:items-center justify-between gap-4"
+              >
+                <div>
+                  <h4 class="text-xl font-bold text-white mb-1">HC Sinergia</h4>
+                  <p class="text-accent-cyan font-medium">
+                    Desarrollador Python Odoo
+                  </p>
+                </div>
+                <div class="text-gray-500 text-sm font-semibold">
+                  2025 - Presente
+                </div>
+              </div>
+              <p class="mt-4 text-gray-400 leading-relaxed">
+                Especializado en Odoo 17 y 18 con stack XML, Python, MVC y
+                Docker. Personalización de módulos y trabajo bajo metodología
+                ágil.
+              </p>
+            </div>
+
+            <!-- Exp 2 -->
+            <div
+              class="trajectory-item glass p-8 rounded-2xl relative overflow-hidden group"
+            >
+              <div
+                class="absolute left-0 top-0 h-full w-1 bg-white/20 group-hover:bg-accent-cyan transition-colors"
+              ></div>
+              <div
+                class="flex flex-col md:flex-row md:items-center justify-between gap-4"
+              >
+                <div>
+                  <h4 class="text-xl font-bold text-white mb-1">AdminiaERP</h4>
+                  <p class="text-accent-cyan font-medium">
+                    Consultor Funcional / Implementador Odoo
+                  </p>
+                </div>
+                <div class="text-gray-500 text-sm font-semibold">
+                  2024 - Presente
+                </div>
+              </div>
+              <p class="mt-4 text-gray-400 leading-relaxed">
+                Gestión integral de proyectos ERP community, desde el análisis
+                de procesos hasta el go-live. Parametrización y migración de
+                datos críticos.
+              </p>
+            </div>
+
+            <!-- Exp 3 -->
+            <div
+              class="trajectory-item glass p-8 rounded-2xl relative overflow-hidden group"
+            >
+              <div
+                class="absolute left-0 top-0 h-full w-1 bg-white/20 group-hover:bg-accent-cyan transition-colors"
+              ></div>
+              <div
+                class="flex flex-col md:flex-row md:items-center justify-between gap-4"
+              >
+                <div>
+                  <h4 class="text-xl font-bold text-white mb-1">Hardtec SRL</h4>
+                  <p class="text-accent-cyan font-medium">
+                    Ejecutivo de cuentas IT
+                  </p>
+                </div>
+                <div class="text-gray-500 text-sm font-semibold">
+                  2024 - 2025
+                </div>
+              </div>
+              <p class="mt-4 text-gray-400 leading-relaxed">
+                Ciberseguridad, infraestructura Docker, microtik y firewall.
+                Visión comercial B2B centrada en soluciones de infraestructura
+                robustas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section id="contacto" class="py-24">
+        <div class="container mx-auto px-6">
+          <div
+            class="glass p-12 md:p-20 rounded-[3rem] text-center relative overflow-hidden"
+          >
+            <div
+              class="absolute top-0 right-0 w-64 h-64 bg-accent-cyan/10 blur-[100px] rounded-full"
+            ></div>
+            <div
+              class="absolute bottom-0 left-0 w-64 h-64 bg-accent-blue/10 blur-[100px] rounded-full"
+            ></div>
+
+            <h2
+              class="font-heading text-4xl md:text-6xl font-bold mb-8 relative z-10"
+            >
+              ¿Listo para escalar <br /><span class="text-accent-cyan"
+                >tu negocio?</span
+              >
+            </h2>
+            <p
+              class="text-gray-400 text-lg mb-12 max-w-2xl mx-auto relative z-10"
+            >
+              Conversemos sobre tu próximo proyecto. Atendemos consultas
+              técnicas y comerciales de forma personalizada desde Rosario,
+              Argentina.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 relative z-10">
+              <a
+                href="https://wa.me/5492477610100"
+                class="px-10 py-5 bg-accent-cyan text-dark font-black rounded-2xl transition-all duration-300 hover:scale-110 shadow-xl shadow-accent-cyan/30 flex items-center"
+              >
+                <svg
+                  class="w-6 h-6 mr-3"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12.031 6.172c-1.574 0-2.85 1.276-2.85 2.85 0 1.573 1.276 2.849 2.85 2.849 1.573 0 2.849-1.276 2.849-2.849 0-1.574-1.276-2.85-2.849-2.85zm0 18A12 12 0 1 1 12.031.172 12 12 0 0 1 12.031 24.172zm.507-18.761a5.617 5.617 0 1 0-.001 11.234 5.617 5.617 0 0 0 .001-11.234z"
+                  />
+                </svg>
+                WhastApp Directo
+              </a>
+              <a
+                href="mailto:renzopayero@hotmail.com"
+                class="px-10 py-5 glass text-white font-bold rounded-2xl hover:border-accent-cyan transition-all duration-300"
+              >
+                Enviar Email
+              </a>
+            </div>
+
+            <div class="mt-16 flex justify-center space-x-8 text-gray-500">
+              <a
+                href="https://www.linkedin.com/in/renzo-payero-870956279/"
+                class="hover:text-accent-cyan transition-colors"
+                >LinkedIn</a
+              >
+              <a href="#" class="hover:text-accent-cyan transition-colors"
+                >Instagram</a
+              >
+              <a href="#" class="hover:text-accent-cyan transition-colors"
+                >GitHub</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer
+      class="py-12 border-t border-white/5 text-center text-gray-600 text-sm"
+    >
+      <div class="container mx-auto px-6">
+        <p>&copy; 2026 Dakolab. Todos los derechos reservados.</p>
+        <p class="mt-2">Desarrollado con precisión e innovación.</p>
+      </div>
+    </footer>
+
+    <!-- Scripts: GSAP & Custom Animation Logic -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+      // Initialize GSAP
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Custom Cursor Glow
+      const cursor = document.getElementById("cursor");
+      document.addEventListener("mousemove", (e) => {
+        gsap.to(cursor, {
+          x: e.clientX,
+          y: e.clientY,
+          duration: 0.6,
+          ease: "power2.out",
+        });
+      });
+
+      // Hero Text Animation
+      const splitTitle = () => {
+        const spans = document.querySelectorAll(".hero-title span");
+        gsap.to(spans, {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: "power4.out",
+          delay: 0.5,
+        });
+      };
+
+      // Entrance Animations
+      window.addEventListener("load", () => {
+        splitTitle();
+
+        gsap.from(".hero-content", {
+          opacity: 0,
+          y: 30,
+          duration: 1.2,
+          delay: 1,
+          ease: "power3.out",
+        });
+
+        gsap.from(".hero-actions", {
+          opacity: 0,
+          scale: 0.9,
+          duration: 1.2,
+          delay: 1.2,
+          ease: "power3.out",
+        });
+
+        gsap.from("header", {
+          y: -100,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out",
+        });
+      });
+
+      // Scroll Reveal Animations
+      gsap.utils.toArray(".service-card").forEach((card, i) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+          opacity: 0,
+          y: 50,
+          duration: 1,
+          delay: i * 0.1,
+          ease: "power3.out",
+        });
+      });
+
+      gsap.utils.toArray(".trajectory-item").forEach((item, i) => {
+        gsap.from(item, {
+          scrollTrigger: {
+            trigger: item,
+            start: "top 90%",
+          },
+          opacity: 0,
+          x: -50,
+          duration: 1,
+          ease: "power3.out",
+        });
+      });
+
+      // Smooth color shifting for glow items
+      gsap.to(".glow-text", {
+        textShadow: "0 0 30px rgba(0, 245, 212, 0.8)",
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+    </script>
+  </body>
+</html>

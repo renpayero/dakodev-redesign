@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  dakolab-web:
+    build: .
+    container_name: dakolab_landing
+    ports:
+      - "80:80"
+    restart: always
+    networks:
+      - web-network
+
+networks:
+  web-network:
+    driver: bridge
