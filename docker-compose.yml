@@ -1,15 +1,15 @@
 version: '3.8'
 
 services:
-  dakolab-web:
+  dakodev-web:
     build: .
-    container_name: dakolab_landing
+    container_name: dakodev_landing
     ports:
-      - "80:80"
+      - "3060:3060"
     restart: always
     networks:
-      - web-network
+      - nginx_default
 
 networks:
-  web-network:
-    driver: bridge
+  nginx_default:
+    external: true

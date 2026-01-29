@@ -1,14 +1,12 @@
-# Build stage (Not needed for pure static but good to have if they add build steps later)
+# Static Nginx server for the landing page
 FROM nginx:alpine
+
+# Cambiamos el puerto de escucha de 80 a 3060 internamente
+RUN sed -i 's/listen\(.*\)80;/listen 3060;/g' /etc/nginx/conf.d/default.conf
 
 # Copy static files
 COPY index.html /usr/share/nginx/html/index.html
-# If there were other assets like images or JS files in folders, we would copy them here
-# COPY src /usr/share/nginx/html/src
 
-# Copy custom nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-EXPOSE 80
+EXPOSE 3060
 
 CMD ["nginx", "-g", "daemon off;"]
