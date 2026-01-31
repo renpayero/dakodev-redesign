@@ -1,0 +1,171 @@
+<canvas id="hero-mesh" class="absolute inset-0 z-0 opacity-80"></canvas>
+
+<script>
+  let canvas: HTMLCanvasElement | null = null;
+  let ctx: CanvasRenderingContext2D | null = null;
+  let animationFrameId: number;
+
+  let width = 0;
+  let height = 0;
+  let particles: any[] = [];
+
+  // Configuration
+  const PARTICLE_COUNT = 70;
+  const CONNECTION_DISTANCE = 160;
+  const MOUSE_DISTANCE = 250;
+
+  class Particle {
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    size: number;
+
+    constructor() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.vx = (Math.random() - 0.5) * 0.2; // Slower base speed for calmness
+      this.vy = (Math.random() - 0.5) * 0.2;
+      this.size = Math.random() * 2.5 + 0.5;
+    }
+
+    update(mouseX: number | null, mouseY: number | null) {
+      this.x += this.vx;
+      this.y += this.vy;
+
+      // Bounce off edges
+      if (this.x < 0 || this.x > width) this.vx *= -1;
+      if (this.y < 0 || this.y > height) this.vy *= -1;
+
+      // Mouse interaction
+      if (mouseX !== null && mouseY !== null) {
+        const dx = mouseX - this.x;
+        const dy = mouseY - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < MOUSE_DISTANCE) {
+          const forceDirectionX = dx / distance;
+          const forceDirectionY = dy / distance;
+          const force = (MOUSE_DISTANCE - distance) / MOUSE_DISTANCE;
+          const directionMultiplier = 0.02; // Reduced pushe force
+
+          this.vx -= forceDirectionX * force * directionMultiplier;
+          this.vy -= forceDirectionY * force * directionMultiplier;
+        }
+      }
+
+      // Friction / Speed Limit to prevent "going crazy"
+      // If speed exceeds a threshold, apply damping to bring it back down
+      const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+      const MAX_SPEED = 0.8;
+      if (speed > MAX_SPEED) {
+        this.vx *= 0.95;
+        this.vy *= 0.95;
+      }
+    }
+
+    draw() {
+      if (!ctx) return;
+      ctx.fillStyle = "rgba(0, 245, 212, 0.7)";
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    if (canvas) {
+      canvas.width = width;
+      canvas.height = height;
+    }
+  }
+
+  function createParticles() {
+    particles = [];
+    const count = window.innerWidth < 768 ? 35 : PARTICLE_COUNT;
+    for (let i = 0; i < count; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  let mouseX: number | null = null;
+  let mouseY: number | null = null;
+
+  function handleMouseMove(e: MouseEvent) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  }
+
+  function handleMouseLeave() {
+    mouseX = null;
+    mouseY = null;
+  }
+
+  function animate() {
+    if (!ctx || !canvas) return;
+    ctx.clearRect(0, 0, width, height);
+
+    // Update and draw particles
+    particles.forEach((p) => {
+      p.update(mouseX, mouseY);
+      p.draw();
+    });
+
+    // Draw connections
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < CONNECTION_DISTANCE) {
+          ctx.beginPath();
+          const opacity = (1 - distance / CONNECTION_DISTANCE) * 0.35;
+          ctx.strokeStyle = `rgba(0, 245, 212, ${opacity})`;
+          ctx.lineWidth = 1;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    animationFrameId = requestAnimationFrame(animate);
+  }
+
+  function init() {
+    // Clean up previous listeners/loops if necessary (though View Transitions mostly handles DOM)
+    if (animationFrameId) cancelAnimationFrame(animationFrameId);
+
+    canvas = document.getElementById("hero-mesh") as HTMLCanvasElement;
+    if (!canvas) return; // Not on home page
+
+    ctx = canvas.getContext("2d");
+
+    // Remove old listeners to avoid duplicates if specific elements persist (unlikely here but safe)
+    window.removeEventListener("mousemove", handleMouseMove);
+    window.removeEventListener("mouseleave", handleMouseLeave);
+    window.removeEventListener("resize", handleResize);
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("resize", handleResize);
+
+    resize();
+    createParticles();
+    animate();
+  }
+
+  function handleResize() {
+    resize();
+    createParticles();
+  }
+
+  // Hook into Astro View Transitions
+  document.addEventListener("astro:page-load", init);
+  document.addEventListener("astro:before-swap", () => {
+    if (animationFrameId) cancelAnimationFrame(animationFrameId);
+  });
+</script>

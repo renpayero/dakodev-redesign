@@ -1,0 +1,146 @@
+---
+
+---
+
+<div
+  id="loader"
+  class="fixed inset-0 z-[100] bg-dark flex flex-col items-center justify-center"
+>
+  <div class="relative flex items-center gap-4">
+    <!-- Logo Icon Building -->
+    <div
+      class="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-cyan to-accent-blue flex items-center justify-center shadow-[0_0_40px_rgba(0,245,212,0.3)] opacity-0 scale-50"
+      id="loader-icon"
+    >
+      <span class="text-dark font-black text-4xl">D</span>
+    </div>
+
+    <!-- Text Typewriter / Decoding -->
+    <div class="overflow-hidden">
+      <!-- Monospaced font helps the effect look more technical -->
+      <h1
+        class="font-heading font-bold text-4xl md:text-5xl tracking-tight text-white translate-y-full font-mono"
+        id="loader-text"
+      >
+        Dakodev
+      </h1>
+    </div>
+  </div>
+
+  <!-- Loading Line -->
+  <div
+    class="w-64 h-1 bg-white/10 rounded-full mt-8 overflow-hidden opacity-0"
+    id="loader-line-container"
+  >
+    <div class="h-full bg-accent-cyan w-0" id="loader-line"></div>
+  </div>
+</div>
+
+<script>
+  import { gsap } from "gsap";
+  import { TextPlugin } from "gsap/TextPlugin";
+
+  gsap.registerPlugin(TextPlugin);
+
+  const initLoader = () => {
+    const loader = document.getElementById("loader");
+    if (!loader) return;
+
+    // Check if loader already ran in this session
+    if (sessionStorage.getItem("loader-ran")) {
+      loader.style.display = "none";
+      document.body.classList.add("hero-quick-load"); // Enable fast animations
+      return;
+    }
+
+    // Ensure class is removed if loader IS showing (rare case of manual refresh clearing session but cached page?)
+    document.body.classList.remove("hero-quick-load");
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        sessionStorage.setItem("loader-ran", "true");
+        gsap.to("#loader", {
+          duration: 0.8,
+          opacity: 0,
+          pointerEvents: "none",
+          ease: "power2.inOut",
+          onComplete: () => {
+            document.body.classList.add("hero-quick-load"); // Enable fast animations for next scrolls/interactivity
+            if (loader) loader.style.display = "none";
+          },
+        });
+      },
+    });
+
+    // Scramble Text Effect Logic
+    const originalText = "Dakodev";
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+
+    function scrambleText(
+      element: HTMLElement,
+      finalState: string,
+      duration: number,
+    ) {
+      let iterations = 0;
+      const maxIterations = duration * 60;
+
+      const interval = setInterval(() => {
+        element.innerText = finalState
+          .split("")
+          .map((letter, index) => {
+            if (index < iterations / (maxIterations / finalState.length)) {
+              return finalState[index];
+            }
+            return chars[Math.floor(Math.random() * chars.length)];
+          })
+          .join("");
+
+        if (iterations >= maxIterations) {
+          clearInterval(interval);
+          element.innerText = finalState;
+        }
+        iterations += 1;
+      }, 1000 / 60);
+    }
+
+    tl.to("#loader-icon", {
+      opacity: 1,
+      scale: 1,
+      duration: 0.8,
+      ease: "back.out(1.7)",
+    })
+      .to(
+        "#loader-text",
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.1,
+          onStart: () => {
+            const el = document.getElementById("loader-text");
+            if (el) scrambleText(el, "Dakodev", 1.0);
+          },
+        },
+        "-=0.2",
+      )
+      .to({}, { duration: 1.0 })
+      .to(
+        "#loader-line-container",
+        {
+          opacity: 1,
+          duration: 0.3,
+        },
+        "-=0.5",
+      )
+      .to("#loader-line", {
+        width: "100%",
+        duration: 0.8,
+        ease: "power1.inOut",
+      });
+  };
+
+  // Run on first load
+  initLoader();
+
+  // Run after View Transitions swap
+  document.addEventListener("astro:after-swap", initLoader);
+</script>

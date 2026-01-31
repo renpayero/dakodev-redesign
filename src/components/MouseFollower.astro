@@ -1,0 +1,37 @@
+<div
+  id="mouse-glow"
+  class="fixed top-0 left-0 w-[600px] h-[600px] rounded-full pointer-events-none z-[1] mix-blend-screen hidden md:block opacity-0"
+  style="background: radial-gradient(circle, rgba(0,245,212,0.15) 0%, rgba(59,130,246,0.05) 50%, transparent 70%); filter: blur(40px);"
+>
+</div>
+
+<script>
+  import { gsap } from "gsap";
+
+  const glow = document.getElementById("mouse-glow");
+
+  if (glow && window.matchMedia("(min-width: 768px)").matches) {
+    // Initial setup - center the glow relative to its own coordinates (0,0 is top-left)
+    gsap.set(glow, { xPercent: -50, yPercent: -50, opacity: 0 });
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    window.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      // Show on movement
+      if (glow.style.opacity === "0") {
+        gsap.to(glow, { opacity: 1, duration: 1 });
+      }
+
+      gsap.to(glow, {
+        x: mouseX,
+        y: mouseY,
+        duration: 1.5, // Very slow, smooth lag
+        ease: "power2.out",
+      });
+    });
+  }
+</script>

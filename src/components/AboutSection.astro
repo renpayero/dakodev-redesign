@@ -1,0 +1,150 @@
+---
+import TechStackMarquee from "./TechStackMarquee.astro";
+---
+
+<section
+  id="nosotros"
+  aria-labelledby="about-heading"
+  class="py-32 relative overflow-hidden"
+>
+  <!-- Decorative background elements -->
+  <div
+    class="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] bg-accent-blue/10 rounded-full blur-[100px] z-0 pointer-events-none"
+  >
+  </div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <!-- Vision Header -->
+    <div
+      class="max-w-4xl mx-auto text-center mb-24 opacity-0 translate-y-10"
+      id="about-header"
+    >
+      <span
+        class="text-accent-cyan font-bold tracking-widest uppercase text-sm mb-4 block"
+        >Nuestra Filosofía</span
+      >
+      <h2
+        id="about-heading"
+        class="font-heading text-4xl md:text-6xl font-bold mb-8 leading-tight"
+      >
+        No hacemos "sitios web". <br />
+        <span class="text-gradient">Diseñamos Activos Digitales.</span>
+      </h2>
+      <p
+        class="text-gray-400 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto"
+      >
+        Dakodev nace para cerrar la brecha entre el diseño estético y la
+        ingeniería robusta. Liderados por especialistas en sistemas, aplicamos
+        estándares corporativos a cada píxel.
+      </p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
+      <!-- Card 1 -->
+      <div
+        class="glass p-8 rounded-3xl border border-white/5 opacity-0 translate-y-12 hover:border-accent-cyan/30 transition-colors duration-500 about-card"
+      >
+        <div class="text-5xl mb-6 text-accent-cyan">01.</div>
+        <h3 class="text-2xl font-bold mb-4 font-heading">Ingeniería (SOLID)</h3>
+        <p class="text-gray-400 leading-relaxed">
+          Código limpio, escalable y mantenible. No creemos en soluciones
+          "parche". Construimos cimientos sólidos para tu crecimiento.
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div
+        class="glass p-8 rounded-3xl border border-white/5 opacity-0 translate-y-12 hover:border-accent-blue/30 transition-colors duration-500 about-card"
+      >
+        <div class="text-5xl mb-6 text-accent-blue">02.</div>
+        <h3 class="text-2xl font-bold mb-4 font-heading">Diseño Estratégico</h3>
+        <p class="text-gray-400 leading-relaxed">
+          Cada animación y micro-interacción tiene un propósito: guiar al
+          usuario y maximizar la conversión.
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div
+        class="glass p-8 rounded-3xl border border-white/5 opacity-0 translate-y-12 hover:border-accent-teal/30 transition-colors duration-500 about-card"
+      >
+        <div class="text-5xl mb-6 text-accent-teal">03.</div>
+        <h3 class="text-2xl font-bold mb-4 font-heading">Transparencia</h3>
+        <p class="text-gray-400 leading-relaxed">
+          Comunicación directa y sin tecnicismos innecesarios. Sabrás
+          exactamente qué estamos construyendo y por qué.
+        </p>
+      </div>
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="opacity-0" id="tech-stack-section">
+      <h3
+        class="text-center font-heading text-2xl font-bold mb-12 text-gray-500 uppercase tracking-widest"
+      >
+        Powering The Future With
+      </h3>
+      <TechStackMarquee />
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initAboutAnimations = () => {
+    // Kill any existing ScrollTriggers to prevent duplicates
+    ScrollTrigger.getAll().forEach((st) => st.kill());
+
+    // Animate Header
+    gsap.to("#about-header", {
+      scrollTrigger: {
+        trigger: "#about-header",
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      ease: "power3.out",
+    });
+
+    // Animate Cards Staggered
+    gsap.utils.toArray(".about-card").forEach((card: any, i) => {
+      gsap.to(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        delay: i * 0.2,
+        ease: "back.out(1.7)",
+      });
+    });
+
+    // Animate Tech Stack
+    gsap.to("#tech-stack-section", {
+      scrollTrigger: {
+        trigger: "#tech-stack-section",
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      },
+      opacity: 1,
+      duration: 1.5,
+      ease: "power2.inOut",
+    });
+  };
+
+  // Run on initial load
+  initAboutAnimations();
+
+  // Re-run after View Transition page swaps
+  document.addEventListener("astro:page-load", initAboutAnimations);
+</script>

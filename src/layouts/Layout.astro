@@ -1,0 +1,115 @@
+---
+import "@fontsource/inter";
+import "@fontsource/outfit";
+import { ClientRouter } from "astro:transitions";
+import "../styles/global.css";
+import MouseFollower from "../components/MouseFollower.astro";
+import "@fontsource/inter/400.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Dakodev | Software Solutions: Expertos en desarrollo de software ERP a medida y landing pages de alto impacto.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body
+    class="bg-dark text-white font-sans antialiased overflow-x-hidden selection:bg-accent-cyan selection:text-dark"
+  >
+    <div class="fixed inset-0 z-[-1] pointer-events-none bg-mesh opacity-60">
+    </div>
+
+    <!-- Navbar Placeholder -->
+    <nav
+      class="fixed top-0 w-full z-50 glass border-b border-white/5 backdrop-blur-md"
+    >
+      <div
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a href="/" class="flex items-center gap-2 group">
+          <div
+            class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-cyan to-accent-blue flex items-center justify-center shadow-lg shadow-accent-cyan/20 group-hover:scale-110 transition-transform"
+          >
+            <span class="text-dark font-black text-xl">D</span>
+          </div>
+          <span class="font-heading font-bold text-2xl tracking-tight"
+            >Dakodev</span
+          >
+        </a>
+
+        <div
+          class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest text-gray-400"
+        >
+          <a href="/" class="hover:text-accent-cyan transition-colors">Inicio</a
+          >
+          <a href="/servicios/" class="hover:text-accent-cyan transition-colors"
+            >Servicios</a
+          >
+          <a href="/contacto/" class="hover:text-accent-cyan transition-colors"
+            >Contacto</a
+          >
+        </div>
+
+        <a
+          href="/contacto/"
+          class="hidden md:block px-6 py-2 bg-accent-cyan text-dark font-bold rounded-full hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg shadow-accent-cyan/20"
+        >
+          Empecemos
+        </a>
+
+        <!-- Mobile Menu Button (Placeholder) -->
+        <button
+          class="md:hidden text-white"
+          aria-label="Abrir menú de navegación"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-8 h-8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <slot />
+
+    <footer
+      class="py-12 border-t border-white/5 text-center text-gray-600 text-sm mt-auto relative z-10 bg-dark-lighter/80 backdrop-blur-sm"
+    >
+      <div class="container mx-auto px-6">
+        <p>
+          &copy; {new Date().getFullYear()}
+          <strong>Dakodev | Software Solutions</strong>. Todos los derechos
+          reservados.
+        </p>
+        <p class="mt-2 text-gray-500">
+          Innovación y precisión en cada línea de código.
+        </p>
+      </div>
+    </footer>
+    <MouseFollower />
+  </body>
+</html>

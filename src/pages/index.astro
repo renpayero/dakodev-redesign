@@ -1,0 +1,175 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Loader from "../components/Loader.astro";
+import HeroBackground from "../components/HeroBackground.astro";
+import AboutSection from "../components/AboutSection.astro";
+---
+
+<Layout title="Dakodev | Software Solutions - Desarrollo de Software Premium">
+  <Loader />
+
+  <main class="relative z-10 w-full overflow-x-hidden">
+    <!-- Hero Section -->
+    <section
+      class="min-h-screen flex items-center justify-center pt-20 relative"
+    >
+      <!-- Dynamic Mesh Background -->
+      <HeroBackground />
+
+      <!-- Static fallback glow for mobile/performance -->
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-cyan/5 rounded-full blur-[120px] pointer-events-none z-0"
+      >
+      </div>
+
+      <div class="container mx-auto px-6 text-center relative z-20">
+        <div
+          class="inline-block px-4 py-1.5 mb-8 glass rounded-full border border-accent-cyan/30 text-accent-cyan text-sm font-semibold tracking-wide uppercase opacity-0 translate-y-4 animate-fade-in-up delay-1"
+        >
+          Premium Software Development
+        </div>
+
+        <h1
+          class="font-heading text-5xl md:text-8xl font-extrabold mb-8 leading-tight tracking-tight"
+        >
+          <span class="block opacity-0 translate-y-8 animate-fade-in-up delay-2"
+            >Construimos el Software</span
+          >
+          <span
+            class="block text-gradient glow-text opacity-0 translate-y-8 animate-fade-in-up delay-3"
+            >del Futuro</span
+          >
+          <span
+            class="block text-4xl md:text-6xl text-gray-300 mt-2 opacity-0 translate-y-8 animate-fade-in-up delay-4"
+            >para tu Empresa Hoy</span
+          >
+        </h1>
+
+        <p
+          class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed opacity-0 translate-y-8 animate-fade-in-up delay-5"
+        >
+          En <strong>Dakodev</strong> transformamos visión en código. Especialistas
+          en Apps escalables, ERPs inteligentes y experiencias web que definen el
+          mercado.
+        </p>
+
+        <div
+          class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6 opacity-0 translate-y-8 animate-fade-in-up delay-6"
+        >
+          <a
+            href="/servicios/"
+            class="px-8 py-4 bg-white text-dark font-bold rounded-xl hover:bg-accent-cyan transition-all duration-300 hover:scale-105 shadow-xl shadow-white/10 w-full md:w-auto"
+          >
+            Ver Soluciones
+          </a>
+          <a
+            href="/contacto/"
+            class="px-8 py-4 glass text-white font-bold rounded-xl hover:border-accent-cyan hover:text-accent-cyan transition-all duration-300 w-full md:w-auto"
+          >
+            Hablemos
+          </a>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div
+        class="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in-up delay-7"
+      >
+        <div
+          id="scroll-indicator"
+          class="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center p-2"
+        >
+          <div class="w-1 h-3 bg-accent-cyan rounded-full animate-bounce"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section (Merged) -->
+    <AboutSection />
+  </main>
+</Layout>
+
+<style>
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Default Delays (Initial Load) */
+  .delay-1 {
+    animation-delay: 2.2s;
+    animation-fill-mode: forwards;
+  }
+  .delay-2 {
+    animation-delay: 2.4s;
+    animation-fill-mode: forwards;
+  }
+  .delay-3 {
+    animation-delay: 2.6s;
+    animation-fill-mode: forwards;
+  }
+  .delay-4 {
+    animation-delay: 2.8s;
+    animation-fill-mode: forwards;
+  }
+  .delay-5 {
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+  }
+  .delay-6 {
+    animation-delay: 3.2s;
+    animation-fill-mode: forwards;
+  }
+  .delay-7 {
+    animation-delay: 3.6s;
+    animation-fill-mode: forwards;
+  }
+
+  /* Quick Load Delays (Subsequent Navigation) */
+  :global(body.hero-quick-load) .delay-1,
+  :global(body.hero-quick-load) .delay-2,
+  :global(body.hero-quick-load) .delay-3,
+  :global(body.hero-quick-load) .delay-4,
+  :global(body.hero-quick-load) .delay-5,
+  :global(body.hero-quick-load) .delay-6,
+  :global(body.hero-quick-load) .delay-7 {
+    animation-delay: 0.1s !important;
+  }
+</style>
+
+<script>
+  const handleScrollIndicator = () => {
+    const indicator = document.getElementById("scroll-indicator");
+    if (!indicator) return;
+
+    const onScroll = () => {
+      // Fade out linearly over 300px of scrolling
+      const maxScroll = 300;
+      const opacity = Math.max(0, 1 - window.scrollY / maxScroll);
+
+      // Apply opacity directly for smooth 1:1 control
+      indicator.style.opacity = opacity.toString();
+    };
+
+    window.addEventListener("scroll", onScroll);
+
+    // Initial check (in case user reloads scrolled down)
+    onScroll();
+
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        window.removeEventListener("scroll", onScroll);
+      },
+      { once: true },
+    );
+  };
+
+  document.addEventListener("astro:page-load", handleScrollIndicator);
+</script>

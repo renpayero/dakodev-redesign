@@ -1,15 +1,7 @@
-version: '3.8'
-
 services:
-  dakodev-web:
+  web:
     build: .
-    container_name: dakodev_landing
-    ports:
-      - "3060:3060"
+    container_name: dakodev-web
     restart: always
-    networks:
-      - nginx_default
-
-networks:
-  nginx_default:
-    external: true
+    ports:
+      - "3070:80"
