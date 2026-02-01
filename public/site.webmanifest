@@ -1,0 +1,16 @@
+{
+  "name": "Dakodev Software Solutions",
+  "short_name": "Dakodev",
+  "description": "Expertos en desarrollo de software ERP a medida y landing pages de alto impacto.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#05080a",
+  "theme_color": "#05080a",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

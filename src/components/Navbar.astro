@@ -1,0 +1,156 @@
+---
+
+---
+
+<nav
+  class="fixed top-0 w-full z-50 glass border-b border-white/5 backdrop-blur-md transition-all duration-300"
+  id="main-navbar"
+>
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <a href="/" class="flex items-center gap-2 group z-50 relative">
+      <div
+        class="w-8 h-8 rounded-lg bg-linear-to-br from-accent-cyan to-accent-blue flex items-center justify-center shadow-lg shadow-accent-cyan/20 group-hover:scale-110 transition-transform"
+      >
+        <span class="text-dark font-black text-xl">D</span>
+      </div>
+      <span class="font-heading font-bold text-2xl tracking-tight text-white"
+        >Dakodev</span
+      >
+    </a>
+
+    <!-- Desktop Menu -->
+    <div
+      class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest text-gray-400"
+    >
+      <a href="/" class="hover:text-accent-cyan transition-colors">Inicio</a>
+      <a href="/servicios/" class="hover:text-accent-cyan transition-colors"
+        >Servicios</a
+      >
+      <a href="/contacto/" class="hover:text-accent-cyan transition-colors"
+        >Contacto</a
+      >
+    </div>
+
+    <a
+      href="/contacto/"
+      class="hidden md:block px-6 py-2 bg-accent-cyan text-dark font-bold rounded-full hover:bg-white hover:scale-105 hover:shadow-[0_0_20px_rgba(0,245,212,0.4)] transition-all duration-300 shadow-lg shadow-accent-cyan/20 active:scale-95"
+    >
+      Empecemos
+    </a>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="menu-toggle"
+      class="md:hidden text-white z-50 relative focus:outline-none"
+      aria-label="Alternar menú de navegación"
+    >
+      <div class="w-8 h-8 flex flex-col justify-center gap-1.5">
+        <span
+          class="block w-8 h-0.5 bg-current transition-all duration-300 origin-center"
+          id="hamburger-top"></span>
+        <span
+          class="block w-8 h-0.5 bg-current transition-all duration-300"
+          id="hamburger-middle"></span>
+        <span
+          class="block w-8 h-0.5 bg-current transition-all duration-300 origin-center"
+          id="hamburger-bottom"></span>
+      </div>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<!-- Moving outside nav to escape backdrop-blur stacking context and ensure full viewport height -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 backdrop-blur-xl z-40 flex flex-col items-center justify-start pt-32 space-y-8 opacity-0 pointer-events-none transition-all duration-500 transform translate-y-4"
+  style="background-color: rgba(5, 8, 10, 0.60);"
+>
+  <a
+    href="/"
+    class="text-2xl font-bold text-white hover:text-accent-cyan transition-colors mobile-link"
+    >Inicio</a
+  >
+  <a
+    href="/servicios/"
+    class="text-2xl font-bold text-white hover:text-accent-cyan transition-colors mobile-link"
+    >Servicios</a
+  >
+  <a
+    href="/contacto/"
+    class="text-2xl font-bold text-white hover:text-accent-cyan transition-colors mobile-link"
+    >Contacto</a
+  >
+  <a
+    href="/contacto/"
+    class="px-8 py-3 bg-accent-cyan text-dark font-bold rounded-full hover:bg-white transition-all shadow-lg mobile-link"
+  >
+    Empecemos
+  </a>
+</div>
+
+<script>
+  const setupNavbar = () => {
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const hamburgerTop = document.getElementById("hamburger-top");
+    const hamburgerMiddle = document.getElementById("hamburger-middle");
+    const hamburgerBottom = document.getElementById("hamburger-bottom");
+    const mobileLinks = document.querySelectorAll(".mobile-link");
+
+    if (
+      !menuToggle ||
+      !mobileMenu ||
+      !hamburgerTop ||
+      !hamburgerMiddle ||
+      !hamburgerBottom
+    )
+      return;
+
+    let isMenuOpen = false;
+
+    const toggleMenu = () => {
+      isMenuOpen = !isMenuOpen;
+
+      if (isMenuOpen) {
+        // Open Menu
+        mobileMenu.classList.remove(
+          "opacity-0",
+          "pointer-events-none",
+          "translate-y-4",
+        );
+        document.body.style.overflow = "hidden"; // Prevent scrolling
+
+        // Animate Hamburger
+        hamburgerTop.classList.add("rotate-45", "translate-y-2");
+        hamburgerMiddle.classList.add("opacity-0");
+        hamburgerBottom.classList.add("-rotate-45", "-translate-y-2");
+      } else {
+        // Close Menu
+        mobileMenu.classList.add(
+          "opacity-0",
+          "pointer-events-none",
+          "translate-y-4",
+        );
+        document.body.style.overflow = ""; // Restore scrolling
+
+        // Reset Hamburger
+        hamburgerTop.classList.remove("rotate-45", "translate-y-2");
+        hamburgerMiddle.classList.remove("opacity-0");
+        hamburgerBottom.classList.remove("-rotate-45", "-translate-y-2");
+      }
+    };
+
+    menuToggle.addEventListener("click", toggleMenu);
+
+    // Close menu when clicking a link
+    mobileLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        if (isMenuOpen) toggleMenu();
+      });
+    });
+  };
+
+  // Run on initial load and after view transitions
+  document.addEventListener("astro:page-load", setupNavbar);
+</script>

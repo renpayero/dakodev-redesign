@@ -8,20 +8,21 @@
 <script>
   import { gsap } from "gsap";
 
-  const glow = document.getElementById("mouse-glow");
+  const initMouseFollower = () => {
+    const glow = document.getElementById("mouse-glow");
+    if (!glow || !window.matchMedia("(min-width: 768px)").matches) return;
 
-  if (glow && window.matchMedia("(min-width: 768px)").matches) {
-    // Initial setup - center the glow relative to its own coordinates (0,0 is top-left)
+    // Initial setup - center the glow relative to its own coordinates
     gsap.set(glow, { xPercent: -50, yPercent: -50, opacity: 0 });
 
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
 
-    window.addEventListener("mousemove", (e) => {
+    const onMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
 
-      // Show on movement
+      // Show on movement if hidden
       if (glow.style.opacity === "0") {
         gsap.to(glow, { opacity: 1, duration: 1 });
       }
@@ -29,9 +30,23 @@
       gsap.to(glow, {
         x: mouseX,
         y: mouseY,
-        duration: 1.5, // Very slow, smooth lag
+        duration: 1.5,
         ease: "power2.out",
       });
-    });
-  }
+    };
+
+    window.addEventListener("mousemove", onMove);
+
+    // Cleanup when navigating away to prevent duplicate listeners
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        window.removeEventListener("mousemove", onMove);
+      },
+      { once: true },
+    );
+  };
+
+  // Run on initial load and after every navigation
+  document.addEventListener("astro:page-load", initMouseFollower);
 </script>
