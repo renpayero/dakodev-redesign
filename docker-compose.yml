@@ -4,4 +4,4 @@ services:
     container_name: dakodev-web
     restart: always
     ports:
-      - "3070:80"
+      - "3080:3080"
