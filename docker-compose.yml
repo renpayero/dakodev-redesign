@@ -4,4 +4,8 @@ services:
     container_name: dakodev-web
     restart: always
     ports:
-      - "3080:3080"
+      - "3060:3060"
+    environment:
+      - RESEND_API_KEY=${RESEND_API_KEY}
+      - HOST=0.0.0.0
+      - PORT=3060
