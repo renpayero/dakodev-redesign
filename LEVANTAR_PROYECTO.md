@@ -59,7 +59,7 @@ Simula el entorno final de producción usando Nginx y Docker. Ideal para verific
 3.  **Abrir en el navegador:**
     La configuración de Docker expone el puerto `3070`:
 
-    > [http://localhost:3070](http://localhost:3070)
+    > [http://localhost:3060](http://localhost:3060)
 
 4.  **Detener el servicio:**
     Cuando termines, puedes bajar el contenedor:
