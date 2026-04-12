@@ -1,5 +1,5 @@
 ---
-
+const currentPath = Astro.url.pathname;
 ---
 
 <nav
@@ -22,11 +22,11 @@
     <div
       class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest text-gray-400 items-center"
     >
-      <a href="/" class="hover:text-accent-cyan transition-colors py-3">Inicio</a>
-      <a href="/servicios/" class="hover:text-accent-cyan transition-colors py-3"
+      <a href="/" class:list={["hover:text-accent-cyan transition-colors py-3", currentPath === "/" && "text-accent-cyan"]}>Inicio</a>
+      <a href="/servicios/" class:list={["hover:text-accent-cyan transition-colors py-3", currentPath.startsWith("/servicios") && "text-accent-cyan"]}
         >Servicios</a
       >
-      <a href="/contacto/" class="hover:text-accent-cyan transition-colors py-3"
+      <a href="/contacto/" class:list={["hover:text-accent-cyan transition-colors py-3", currentPath.startsWith("/contacto") && "text-accent-cyan"]}
         >Contacto</a
       >
     </div>
