@@ -97,12 +97,15 @@ import TechStackMarquee from "./TechStackMarquee.astro";
   gsap.registerPlugin(ScrollTrigger);
 
   const initAboutAnimations = () => {
-    // Kill any existing ScrollTriggers to prevent duplicates
-    ScrollTrigger.getAll().forEach((st) => st.kill());
+    // Kill only THIS section's ScrollTriggers (scoped to about- prefix)
+    ScrollTrigger.getAll()
+      .filter((st: any) => st.vars?.id?.startsWith("about-"))
+      .forEach((st) => st.kill());
 
     // Animate Header
     gsap.to("#about-header", {
       scrollTrigger: {
+        id: "about-header",
         trigger: "#about-header",
         start: "top 80%",
         toggleActions: "play none none reverse",
@@ -117,6 +120,7 @@ import TechStackMarquee from "./TechStackMarquee.astro";
     gsap.utils.toArray(".about-card").forEach((card: any, i) => {
       gsap.to(card, {
         scrollTrigger: {
+          id: `about-card-${i}`,
           trigger: card,
           start: "top 85%",
           toggleActions: "play none none reverse",
@@ -132,6 +136,7 @@ import TechStackMarquee from "./TechStackMarquee.astro";
     // Animate Tech Stack
     gsap.to("#tech-stack-section", {
       scrollTrigger: {
+        id: "about-tech",
         trigger: "#tech-stack-section",
         start: "top 85%",
         toggleActions: "play none none reverse",
