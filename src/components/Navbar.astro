@@ -1,4 +1,5 @@
 ---
+import logoMark from "../assets/logo-mark.svg?raw";
 const currentPath = Astro.url.pathname;
 ---
 
@@ -8,12 +9,12 @@ const currentPath = Astro.url.pathname;
 >
   <div class="container mx-auto px-6 py-4 flex justify-between items-center">
     <a href="/" class="flex items-center gap-2 group z-50 relative">
-      <div
-        class="w-8 h-8 rounded-lg bg-linear-to-br from-accent-cyan to-accent-blue flex items-center justify-center shadow-lg shadow-accent-cyan/20 group-hover:scale-110 transition-transform"
-      >
-        <span class="text-dark font-black text-xl">D</span>
-      </div>
-      <span class="font-heading font-bold text-2xl tracking-tight text-white"
+      <span
+        class="inline-block w-9 h-9 group-hover:scale-110 transition-transform drop-shadow-[0_0_12px_rgba(0,245,212,0.35)]"
+        aria-label="Dakodev"
+        set:html={logoMark}
+      />
+      <span class="font-wordmark font-bold text-2xl tracking-tight text-white"
         >Dakodev</span
       >
     </a>
