@@ -19,7 +19,7 @@ const PRODUCTS: Record<
     title: "Reserva DAKO・WEB",
     description:
       "Reserva única para desarrollo de Landing / Sitio Institucional. Despliegue y relevamiento en menos de 24hs hábiles. (El plan mensual de hosting + soporte se coordina por separado.)",
-    usd: 1,
+    usd: 80,
   },
 };
 
