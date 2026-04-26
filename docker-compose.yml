@@ -6,6 +6,10 @@ services:
     ports:
       - "3060:3060"
     environment:
-      - RESEND_API_KEY=${RESEND_API_KEY}
       - HOST=0.0.0.0
       - PORT=3060
+      - NODE_ENV=production
+      - PUBLIC_SITE_URL=${PUBLIC_SITE_URL}
+      - RESEND_API_KEY=${RESEND_API_KEY}
+      - MP_ACCESS_TOKEN=${MP_ACCESS_TOKEN}
+      - MP_WEBHOOK_SECRET=${MP_WEBHOOK_SECRET}
