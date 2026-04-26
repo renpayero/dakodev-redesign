@@ -1,0 +1,223 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const product = (Astro.url.searchParams.get("product") || "").toLowerCase();
+const status = (Astro.url.searchParams.get("status") || "approved").toLowerCase();
+
+const productInfo: Record<string, { name: string; nextStep: string; color: string }> = {
+  crm: {
+    name: "DAKO・CRM",
+    nextStep:
+      "desplegar tu CRM personalizado y configurar tus credenciales de acceso",
+    color: "accent-cyan",
+  },
+  web: {
+    name: "DAKO・WEB",
+    nextStep:
+      "iniciar el relevamiento de tu sitio y empezar el diseño",
+    color: "accent-cyan",
+  },
+};
+
+const info = productInfo[product] || {
+  name: "tu reserva",
+  nextStep: "coordinar los próximos pasos",
+  color: "accent-cyan",
+};
+
+const isApproved = status === "approved";
+const title = isApproved
+  ? `¡Reserva confirmada! | Dakodev`
+  : `Pago pendiente | Dakodev`;
+---
+
+<Layout title={title}>
+  <main class="min-h-[80vh] pt-32 pb-20 relative z-10 flex items-center">
+    <!-- Decorative orbs -->
+    <div
+      id="gr-orb-1"
+      class="absolute top-1/4 -left-40 w-[500px] h-[500px] bg-accent-cyan/10 rounded-full blur-[100px] z-0 pointer-events-none"
+    >
+    </div>
+    <div
+      id="gr-orb-2"
+      class="absolute bottom-1/4 -right-40 w-[500px] h-[500px] bg-accent-teal/10 rounded-full blur-[100px] z-0 pointer-events-none"
+    >
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10">
+      <div
+        class="max-w-3xl mx-auto text-center glass rounded-3xl border border-white/10 p-10 md:p-16 opacity-0 scale-90"
+        id="gr-card"
+      >
+        {
+          isApproved ? (
+            <>
+              <div
+                id="gr-check"
+                class="w-24 h-24 mx-auto mb-8 rounded-full bg-accent-cyan/10 flex items-center justify-center opacity-0"
+              >
+                <svg
+                  class="w-12 h-12 text-accent-cyan"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    id="gr-check-path"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="3"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+
+              <span
+                id="gr-badge"
+                class="text-accent-cyan font-bold tracking-widest uppercase text-xs mb-4 block opacity-0"
+              >
+                Reserva Confirmada
+              </span>
+
+              <h1
+                id="gr-title"
+                class="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight opacity-0"
+              >
+                ¡Listo, ya quedó <span class="text-gradient glow-text">reservado</span>!
+              </h1>
+
+              <p id="gr-text" class="text-gray-300 text-lg md:text-xl leading-relaxed mb-8 opacity-0">
+                Recibimos tu pago de reserva por <strong class="text-white">{info.name}</strong>.
+                En menos de <strong class="text-accent-cyan">24 horas hábiles</strong> alguien del
+                equipo de Dakodev se va a contactar contigo para {info.nextStep}.
+              </p>
+
+              <div
+                id="gr-line"
+                class="h-1 bg-gradient-to-r from-accent-cyan to-accent-blue rounded-full mb-10 w-0 mx-auto"
+              >
+              </div>
+            </>
+          ) : (
+            <>
+              <div class="w-24 h-24 mx-auto mb-8 rounded-full bg-accent-blue/10 flex items-center justify-center">
+                <svg
+                  class="w-12 h-12 text-accent-blue"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+
+              <h1 class="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                Tu pago está <span class="text-gradient">en proceso</span>
+              </h1>
+
+              <p class="text-gray-300 text-lg md:text-xl leading-relaxed mb-8">
+                Estamos esperando la confirmación de MercadoPago. Apenas se acredite el
+                pago, te vamos a contactar en menos de 24 hs hábiles.
+              </p>
+            </>
+          )
+        }
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a
+            href="/servicios/"
+            class="px-8 py-4 bg-accent-cyan text-dark font-bold rounded-xl hover:bg-white transition-all duration-300 shadow-lg shadow-accent-cyan/20 inline-flex items-center"
+          >
+            Volver a Servicios
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 ml-2"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </a>
+          <a
+            href="/"
+            class="px-8 py-4 border border-white/20 text-white font-medium rounded-xl hover:border-accent-cyan/50 hover:text-accent-cyan transition-all duration-300"
+          >
+            Ir al Inicio
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  import { gsap } from "gsap";
+
+  const initGraciasAnimations = () => {
+    const card = document.getElementById("gr-card");
+    if (!card) return;
+
+    // Reset state every run (idempotent across astro:page-load)
+    gsap.killTweensOf([
+      "#gr-card",
+      "#gr-check",
+      "#gr-badge",
+      "#gr-title",
+      "#gr-text",
+      "#gr-line",
+      "#gr-orb-1",
+      "#gr-orb-2",
+    ]);
+
+    // Floating orbs
+    gsap.to("#gr-orb-1", {
+      x: 50, y: -30, duration: 8, yoyo: true, repeat: -1, ease: "sine.inOut",
+    });
+    gsap.to("#gr-orb-2", {
+      x: -50, y: 30, duration: 9, yoyo: true, repeat: -1, ease: "sine.inOut",
+    });
+
+    // Card scale-in (HTML inicia en opacity-0 scale-90)
+    gsap.to("#gr-card", {
+      scale: 1, opacity: 1, duration: 1, ease: "back.out(1.4)",
+    });
+
+    // Check icon (HTML inicia en opacity-0)
+    gsap.to("#gr-check", {
+      opacity: 1, scale: 1, rotation: 0, duration: 0.8, delay: 0.4, ease: "back.out(2)",
+    });
+
+    // Check path stroke draw
+    const path = document.getElementById("gr-check-path") as SVGPathElement | null;
+    if (path && typeof path.getTotalLength === "function") {
+      const length = path.getTotalLength();
+      gsap.fromTo(
+        path,
+        { strokeDasharray: length, strokeDashoffset: length },
+        { strokeDashoffset: 0, duration: 0.6, delay: 0.9, ease: "power2.inOut" }
+      );
+    }
+
+    // Sequential text reveal (HTML inicia en opacity-0)
+    gsap.to("#gr-badge", { opacity: 1, y: 0, duration: 0.6, delay: 1.1, ease: "power2.out" });
+    gsap.to("#gr-title", { opacity: 1, y: 0, duration: 0.8, delay: 1.25, ease: "power3.out" });
+    gsap.to("#gr-text", { opacity: 1, y: 0, duration: 0.8, delay: 1.45, ease: "power3.out" });
+
+    // Gradient line expand
+    gsap.to("#gr-line", {
+      width: "60%", duration: 1.2, delay: 1.6, ease: "power2.inOut",
+    });
+  };
+
+  initGraciasAnimations();
+  document.addEventListener("astro:page-load", initGraciasAnimations);
+</script>
