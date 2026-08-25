@@ -58,10 +58,25 @@ import logoMark from "../assets/logo-mark.svg?raw";
       return;
     }
 
+    const skipLoader = () => {
+      sessionStorage.setItem("loader-ran", "true");
+      document.body.classList.add("hero-quick-load");
+      loader.style.display = "none";
+    };
+
     // Check if loader already ran in this session
     if (sessionStorage.getItem("loader-ran")) {
       loader.style.display = "none";
       document.body.classList.add("hero-quick-load"); // Enable fast animations
+      return;
+    }
+
+    // Si la pestaña se abrió en segundo plano (Ctrl+click, restaurar sesión),
+    // el navegador suspende requestAnimationFrame y GSAP no avanza: la
+    // animación quedaría congelada tapando el sitio. En ese caso no tiene
+    // sentido mostrar una intro que nadie está mirando.
+    if (document.visibilityState === "hidden") {
+      skipLoader();
       return;
     }
 
@@ -148,6 +163,16 @@ import logoMark from "../assets/logo-mark.svg?raw";
         duration: 0.8,
         ease: "power1.inOut",
       });
+
+    // Red de seguridad: el loader tapa todo el viewport en z-100, así que si
+    // por cualquier motivo la timeline no llegara a completarse, el sitio
+    // quedaría inutilizable. Pasado el doble de su duración, se cierra igual.
+    window.setTimeout(() => {
+      if (loader.style.display !== "none") {
+        tl.kill();
+        skipLoader();
+      }
+    }, 8000);
   };
 
   // Run on first load
