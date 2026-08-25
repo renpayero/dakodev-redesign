@@ -4,12 +4,14 @@ import logoMark from "../assets/logo-mark.svg?raw";
 
 <div
   id="loader"
+  aria-hidden="true"
+  inert
   class="fixed inset-0 z-[100] bg-dark flex flex-col items-center justify-center"
 >
   <div class="relative flex items-center gap-4">
     <!-- Logo Icon Building -->
     <div
-      class="w-16 h-16 opacity-0 scale-50 drop-shadow-[0_0_40px_rgba(0,245,212,0.3)]"
+      class="w-16 h-16 opacity-0 reveal-zoom-50 drop-shadow-[0_0_40px_rgba(0,245,212,0.3)]"
       id="loader-icon"
       set:html={logoMark}
     />
@@ -19,7 +21,7 @@ import logoMark from "../assets/logo-mark.svg?raw";
     <div class="overflow-hidden">
       <!-- Monospaced font helps the effect look more technical -->
       <div
-        class="font-wordmark font-bold text-4xl md:text-5xl tracking-tight text-white translate-y-full"
+        class="font-wordmark font-bold text-4xl md:text-5xl tracking-tight text-white reveal-down-full"
         id="loader-text"
         aria-hidden="true"
       >
@@ -46,6 +48,15 @@ import logoMark from "../assets/logo-mark.svg?raw";
   const initLoader = () => {
     const loader = document.getElementById("loader");
     if (!loader) return;
+
+    // Con movimiento reducido el loader no debe tapar la pantalla 3,5s con una
+    // animación que el usuario pidió no ver, y que además no puede interrumpir.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      sessionStorage.setItem("loader-ran", "true");
+      document.body.classList.add("hero-quick-load");
+      loader.style.display = "none";
+      return;
+    }
 
     // Check if loader already ran in this session
     if (sessionStorage.getItem("loader-ran")) {

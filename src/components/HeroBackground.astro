@@ -1,9 +1,13 @@
-<canvas id="hero-mesh" class="absolute inset-0 z-0 opacity-80"></canvas>
+<canvas
+  id="hero-mesh"
+  aria-hidden="true"
+  class="absolute inset-0 z-0 opacity-80"></canvas>
 
 <script>
   let canvas: HTMLCanvasElement | null = null;
   let ctx: CanvasRenderingContext2D | null = null;
-  let animationFrameId: number;
+  let animationFrameId: number = 0;
+  let visibilityObserver: IntersectionObserver | null = null;
 
   let width = 0;
   let height = 0;
@@ -77,8 +81,15 @@
     width = window.innerWidth;
     height = window.innerHeight;
     if (canvas) {
-      canvas.width = width;
-      canvas.height = height;
+      // El canvas se dibujaba a 1 píxel de dispositivo por píxel CSS, así que
+      // en pantallas escaladas (la mayoría de los portátiles) las partículas y
+      // las líneas se veían borrosas. Se limita a 2 para no penalizar 4K.
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx?.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
   }
 
@@ -113,9 +124,10 @@
       p.draw();
     });
 
-    // Draw connections
+    // Draw connections — j arranca en i+1: con j = i cada partícula se
+    // comparaba consigo misma (distancia 0) y dibujaba una línea degenerada.
     for (let i = 0; i < particles.length; i++) {
-      for (let j = i; j < particles.length; j++) {
+      for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -142,6 +154,13 @@
     canvas = document.getElementById("hero-mesh") as HTMLCanvasElement;
     if (!canvas) return; // Not on home page
 
+    // El canvas es la firma visual del hero, así que NO se apaga por ancho de
+    // pantalla; solo se respeta el pedido explícito de movimiento reducido.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      canvas.style.display = "none";
+      return;
+    }
+
     ctx = canvas.getContext("2d");
 
     // Remove old listeners to avoid duplicates if specific elements persist (unlikely here but safe)
@@ -156,6 +175,22 @@
     resize();
     createParticles();
     animate();
+
+    // El loop corría a 60fps aunque el hero estuviera fuera de pantalla,
+    // quemando batería durante toda la navegación por la home.
+    visibilityObserver?.disconnect();
+    visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (!animationFrameId) animate();
+        } else if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = 0;
+        }
+      },
+      { threshold: 0 },
+    );
+    visibilityObserver.observe(canvas);
   }
 
   function handleResize() {
@@ -167,5 +202,8 @@
   document.addEventListener("astro:page-load", init);
   document.addEventListener("astro:before-swap", () => {
     if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    animationFrameId = 0;
+    visibilityObserver?.disconnect();
+    visibilityObserver = null;
   });
 </script>

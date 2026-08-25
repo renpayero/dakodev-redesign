@@ -1,22 +1,40 @@
 ---
-import "@fontsource/inter";
-import "@fontsource/outfit";
-import "@fontsource/montserrat/700.css";
+// Los pesos se importan explícitamente: antes solo se cargaba weight 400 de
+// Inter y Outfit mientras el markup declara 6 pesos distintos, así que todos
+// los titulares del sitio se dibujaban con bold sintético del navegador.
+// Los imports de fuente van ANTES de global.css (Vite emite el CSS en orden).
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-500.css";
+import "@fontsource/inter/latin-600.css";
+import "@fontsource/inter/latin-700.css";
+import "@fontsource/outfit/latin-600.css";
+import "@fontsource/outfit/latin-700.css";
+import "@fontsource/outfit/latin-800.css";
+import "@fontsource/montserrat/latin-700.css";
+
+// Las dos caras que pintan primero: el wordmark en t=0 y el H1 del hero.
+import outfit800 from "@fontsource/outfit/files/outfit-latin-800-normal.woff2?url";
+import montserrat700 from "@fontsource/montserrat/files/montserrat-latin-700-normal.woff2?url";
+
 import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 import MouseFollower from "../components/MouseFollower.astro";
 import Navbar from "../components/Navbar.astro";
-import "@fontsource/inter/400.css";
 
 interface Props {
   title: string;
   description?: string;
+  noindex?: boolean;
 }
 
 const {
   title,
-  description = "Dakodev | Software Solutions: Expertos en desarrollo de software ERP a medida y landing pages de alto impacto.",
+  description = "Dakodev: innovación digital y automatización con IA para empresas. Implementamos ERP, CRM y software a medida que reducen horas de trabajo y costos operativos.",
+  noindex = false,
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const ogImage = new URL("/apple-touch-icon.png", Astro.site ?? Astro.url.origin);
 ---
 
 <!doctype html>
@@ -24,21 +42,68 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={outfit800}
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={montserrat700}
+      crossorigin
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
     <link rel="icon" sizes="any" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    <!-- El canal principal de la empresa es WhatsApp: sin estas etiquetas el
+         link compartido no genera ninguna previsualización. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Dakodev" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="es_AR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <title>{title}</title>
+    <noscript>
+      <style>
+        [data-reveal],
+        [class*="reveal-up"],
+        [class*="reveal-zoom"],
+        [class*="reveal-down"] {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+        #loader {
+          display: none !important;
+        }
+      </style>
+    </noscript>
     <ClientRouter />
   </head>
   <body
     class="bg-dark text-white font-sans antialiased overflow-x-hidden selection:bg-accent-cyan selection:text-dark"
   >
-    <div class="fixed inset-0 z-[-1] pointer-events-none bg-mesh opacity-60">
-    </div>
+    <!-- Capa de textura de fondo. Estaba en z-[-1], detrás del fondo opaco del
+         <body>, así que nunca se vio. Ahora se apila por encima con z-0 y el
+         contenido queda en z-10. -->
+    <div class="fixed inset-0 z-0 pointer-events-none bg-mesh opacity-60"></div>
 
     <!-- Navbar -->
     <Navbar transition:persist />
@@ -46,7 +111,7 @@ const {
     <slot />
 
     <footer
-      class="py-12 border-t border-white/5 text-center text-gray-600 text-sm mt-auto relative z-10 bg-dark-lighter/80 backdrop-blur-sm"
+      class="py-12 border-t border-white/10 text-center text-gray-400 text-sm relative z-10 bg-dark-lighter/80 backdrop-blur-sm"
     >
       <div class="container mx-auto px-6">
         <p>
@@ -54,8 +119,8 @@ const {
           <strong class="font-wordmark font-bold">Dakodev | Software Solutions</strong>. Todos los derechos
           reservados.
         </p>
-        <p class="mt-2 text-gray-500">
-          Innovación y precisión en cada línea de código.
+        <p class="mt-2 text-xs">
+          Software que trabaja para que tu equipo trabaje menos.
         </p>
       </div>
     </footer>

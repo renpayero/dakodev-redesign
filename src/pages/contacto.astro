@@ -2,7 +2,10 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Contacto | Dakodev Software Solutions">
+<Layout
+  title="Contacto | Dakodev"
+  description="Contanos qué procesos te consumen más horas. Te respondemos en menos de 24 hs hábiles. Rosario, Argentina — trabajamos con toda LATAM."
+>
   <main class="pt-32 pb-20 relative z-10">
     <div class="container mx-auto px-6">
       <div class="max-w-4xl mx-auto">
@@ -12,26 +15,28 @@ import Layout from "../layouts/Layout.astro";
           >
             Hablemos
           </div>
-          <h1 class="font-heading text-5xl md:text-6xl font-bold mb-6">
-            Inicia tu <span class="text-gradient">Transformación</span>
+          <h1
+            class="font-heading text-5xl md:text-6xl font-bold mb-6 leading-tight"
+          >
+            Iniciá tu <span class="text-gradient">Transformación</span>
           </h1>
           <p class="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
-            Cuéntanos sobre tu proyecto. Ya sea una web corporativa o un ERP
+            Contanos sobre tu proyecto. Ya sea una web corporativa o un ERP
             complejo, estamos listos para escucharte.
           </p>
         </div>
 
         <div
-          class="glass rounded-3xl border border-white/5 overflow-hidden grid grid-cols-1 md:grid-cols-2"
+          class="glass rounded-3xl border border-white/10 overflow-hidden grid grid-cols-1 md:grid-cols-2"
         >
           <!-- Contact Info Section (Left/Top) -->
           <div class="p-8 md:p-12 bg-white/5 flex flex-col h-full">
             <div>
-              <h3 class="font-heading text-2xl font-bold mb-6">
+              <h2 class="font-heading text-2xl font-bold mb-6">
                 Información de Contacto
-              </h3>
+              </h2>
               <p class="text-gray-400 text-sm mb-10 leading-relaxed">
-                Estamos listos para escalar tu negocio al siguiente nivel. Elige
+                Estamos listos para escalar tu negocio al siguiente nivel. Elegí
                 el canal que prefieras.
               </p>
 
@@ -39,7 +44,7 @@ import Layout from "../layouts/Layout.astro";
                 <!-- Phone -->
                 <li class="flex items-start group">
                   <div
-                    class="shrink-0 w-10 h-10 rounded-lg bg-accent-cyan/10 flex items-center justify-center mr-4 group-hover:bg-accent-cyan group-hover:text-dark transition-all duration-300"
+                    class="shrink-0 w-10 h-10 rounded-xl bg-accent-cyan/10 flex items-center justify-center mr-4 group-hover:bg-accent-cyan group-hover:text-dark transition-all duration-300"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +64,7 @@ import Layout from "../layouts/Layout.astro";
                     <span class="block text-white font-medium text-lg"
                       >+54 9 2477 61-0100</span
                     >
-                    <span class="text-gray-500 text-sm"
+                    <span class="text-gray-400 text-sm"
                       >Lunes a Viernes, 9hs - 18hs</span
                     >
                   </div>
@@ -68,7 +73,7 @@ import Layout from "../layouts/Layout.astro";
                 <!-- Email -->
                 <li class="flex items-start group">
                   <div
-                    class="shrink-0 w-10 h-10 rounded-lg bg-accent-blue/10 flex items-center justify-center mr-4 group-hover:bg-accent-blue group-hover:text-dark transition-all duration-300"
+                    class="shrink-0 w-10 h-10 rounded-xl bg-accent-blue/10 flex items-center justify-center mr-4 group-hover:bg-accent-blue group-hover:text-dark transition-all duration-300"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +93,7 @@ import Layout from "../layouts/Layout.astro";
                     <span class="block text-white font-medium break-all"
                       >administracion@dakodev.com</span
                     >
-                    <span class="text-gray-500 text-sm"
+                    <span class="text-gray-400 text-sm"
                       >Respuesta en menos de 24hs</span
                     >
                   </div>
@@ -97,7 +102,7 @@ import Layout from "../layouts/Layout.astro";
                 <!-- Location -->
                 <li class="flex items-start group">
                   <div
-                    class="shrink-0 w-10 h-10 rounded-lg bg-accent-teal/10 flex items-center justify-center mr-4 group-hover:bg-accent-teal group-hover:text-dark transition-all duration-300"
+                    class="shrink-0 w-10 h-10 rounded-xl bg-accent-teal/10 flex items-center justify-center mr-4 group-hover:bg-accent-teal group-hover:text-dark transition-all duration-300"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +126,7 @@ import Layout from "../layouts/Layout.astro";
                     <span class="block text-white font-medium"
                       >Rosario, Argentina</span
                     >
-                    <span class="text-gray-500 text-sm"
+                    <span class="text-gray-400 text-sm"
                       >Disponible para todo el mundo</span
                     >
                   </div>
@@ -133,7 +138,8 @@ import Layout from "../layouts/Layout.astro";
               <a
                 href="https://wa.me/5492477610100"
                 target="_blank"
-                class="group w-full flex items-center justify-center px-6 py-4 bg-[#25D366] text-white font-bold rounded-xl hover:bg-[#20bd5a] transition-all duration-300 hover:scale-[1.02] shadow-lg shadow-[#25D366]/20"
+                rel="noopener noreferrer"
+                class="group w-full flex items-center justify-center px-6 py-4 bg-[#25D366] text-dark font-bold rounded-xl hover:bg-[#20bd5a] transition-all duration-300 hover:scale-[1.02] shadow-lg shadow-[#25D366]/20"
               >
                 <svg
                   class="w-6 h-6 mr-3 fill-current"
@@ -153,7 +159,8 @@ import Layout from "../layouts/Layout.astro";
                 <a
                   href="https://www.instagram.com/dakodevsrl/?hl=es-la"
                   target="_blank"
-                  class="group flex items-center justify-center px-4 py-3 bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white font-bold rounded-xl hover:opacity-90 transition-all duration-300 hover:scale-[1.02] shadow-lg shadow-[#fd1d1d]/20"
+                rel="noopener noreferrer"
+                  class="group flex items-center justify-center px-4 py-3 bg-[#833ab4] text-white font-bold rounded-xl hover:opacity-90 transition-all duration-300 hover:scale-[1.02] shadow-lg shadow-[#833ab4]/20"
                 >
                   <svg
                     class="w-5 h-5 mr-2 fill-current"
@@ -171,7 +178,8 @@ import Layout from "../layouts/Layout.astro";
                 <a
                   href="https://www.linkedin.com/company/dakodev/?viewAsMember=true"
                   target="_blank"
-                  class="group flex items-center justify-center px-4 py-3 bg-[#0077b5] text-white font-bold rounded-xl hover:bg-[#006097] transition-all duration-300 hover:scale-[1.02] shadow-lg shadow-[#0077b5]/20"
+                rel="noopener noreferrer"
+                  class="group flex items-center justify-center px-4 py-3 bg-[#0a66c2] text-white font-bold rounded-xl hover:bg-[#004182] transition-all duration-300 hover:scale-[1.02] shadow-lg shadow-[#0a66c2]/20"
                 >
                   <svg
                     class="w-5 h-5 mr-2 fill-current"
@@ -186,7 +194,7 @@ import Layout from "../layouts/Layout.astro";
                 </a>
               </div>
               <p
-                class="absolute -bottom-6 left-0 right-0 text-center text-xs text-gray-500"
+                class="absolute -bottom-6 left-0 right-0 text-center text-xs text-gray-400"
               >
                 Respuesta inmediata
               </p>
@@ -196,66 +204,80 @@ import Layout from "../layouts/Layout.astro";
           <!-- Form Section (Right/Bottom) -->
           <div class="p-8 md:p-12 h-full flex flex-col relative">
             <!-- Success Overlay -->
-            <div id="success-overlay" class="absolute inset-0 bg-dark/95 backdrop-blur-sm flex flex-col items-center justify-center opacity-0 pointer-events-none transition-all duration-500 z-10 rounded-3xl">
+            <div id="success-overlay" aria-hidden="true" class="absolute inset-0 bg-dark/95 backdrop-blur-sm flex flex-col items-center justify-center opacity-0 pointer-events-none transition-all duration-500 z-10">
               <div class="success-icon mb-6">
                 <svg class="w-24 h-24" viewBox="0 0 100 100">
-                  <circle class="circle" cx="50" cy="50" r="45" fill="none" stroke="#00d9ff" stroke-width="4"/>
-                  <path class="check" d="M30 50 L45 65 L70 35" fill="none" stroke="#00d9ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle class="circle" cx="50" cy="50" r="45" fill="none" stroke="#00f5d4" stroke-width="4"/>
+                  <path class="check" d="M30 50 L45 65 L70 35" fill="none" stroke="#00f5d4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
               <h3 class="font-heading text-2xl font-bold text-white mb-2">¡Email enviado!</h3>
-              <p class="text-gray-400">Te responderemos pronto.</p>
+              <p class="text-gray-400">Te respondemos en menos de 24 hs hábiles.</p>
             </div>
 
             <form id="contact-form" class="flex flex-col h-full">
-              <div class="space-y-5 grow">
+              <h2 class="sr-only">Formulario de contacto</h2>
+              <div class="space-y-5">
                 <div>
-                  <label class="block text-sm font-medium text-gray-400 mb-2">Nombre</label>
+                  <label for="contact-name" class="block text-sm font-medium text-gray-400 mb-2">Nombre</label>
                   <input
                     type="text"
+                    id="contact-name"
                     name="name"
+                    autocomplete="name"
                     required
-                    class="w-full bg-dark-lighter/80 border border-gray-800 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-accent-cyan/50 focus:ring-1 focus:ring-accent-cyan/50 transition-colors placeholder-gray-600"
+                    class="w-full bg-dark-lighter/80 border border-white/40 rounded-xl px-4 py-3.5 text-white focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/40 transition-colors placeholder-gray-400"
                     placeholder="Tu nombre"
                   />
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-400 mb-2">Email</label>
+                  <label for="contact-email" class="block text-sm font-medium text-gray-400 mb-2">Email</label>
                   <input
                     type="email"
+                    id="contact-email"
                     name="email"
+                    autocomplete="email"
                     required
-                    class="w-full bg-dark-lighter/80 border border-gray-800 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-accent-cyan/50 focus:ring-1 focus:ring-accent-cyan/50 transition-colors placeholder-gray-600"
+                    class="w-full bg-dark-lighter/80 border border-white/40 rounded-xl px-4 py-3.5 text-white focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/40 transition-colors placeholder-gray-400"
                     placeholder="tu@email.com"
                   />
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-400 mb-2">Servicio de interés</label>
+                  <label for="contact-subject" class="block text-sm font-medium text-gray-400 mb-2">Servicio de interés</label>
                   <select
+                    id="contact-subject"
                     name="subject"
                     required
-                    class="w-full bg-dark-lighter/80 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-cyan/50 focus:ring-1 focus:ring-accent-cyan/50 transition-colors cursor-pointer appearance-none"
-                    style="background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%2224%22 height%3D%2224%22 viewBox%3D%220 0 24 24%22 fill%3D%22none%22 stroke%3D%22%239ca3af%22 stroke-width%3D%222%22%3E%3Cpath d%3D%22M6 9l6 6 6-6%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 12px center; background-size: 20px;"
+                    class="w-full bg-dark-lighter/80 border border-white/40 rounded-xl px-4 py-3.5 text-white focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/40 transition-colors cursor-pointer appearance-none"
+                    style="background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%2224%22 height%3D%2224%22 viewBox%3D%220 0 24 24%22 fill%3D%22none%22 stroke%3D%22%2399a1af%22 stroke-width%3D%222%22%3E%3Cpath d%3D%22M6 9l6 6 6-6%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 12px center; background-size: 20px;"
                   >
-                    <option value="" disabled selected class="bg-dark text-gray-500">Selecciona un servicio...</option>
-                    <option value="DAKO・ERP - Gestión Empresarial Integral" class="bg-dark text-white">DAKO・ERP - Gestión Empresarial Integral</option>
-                    <option value="DAKO・CRM - Gestión Comercial y Pipeline" class="bg-dark text-white">DAKO・CRM - Gestión Comercial y Pipeline</option>
-                    <option value="DAKO・DEV - Aplicaciones Web a Medida" class="bg-dark text-white">DAKO・DEV - Aplicaciones Web a Medida</option>
-                    <option value="DAKO・WEB - Landing Pages e Institucionales" class="bg-dark text-white">DAKO・WEB - Landing Pages e Institucionales</option>
+                    <option value="" disabled selected class="bg-dark text-gray-400">Elegí un servicio...</option>
+                    <option value="DAKO·ERP - Gestión Empresarial Integral" class="bg-dark text-white">DAKO·ERP - Gestión Empresarial Integral</option>
+                    <option value="DAKO·CRM - Gestión Comercial y Pipeline de Ventas" class="bg-dark text-white">DAKO·CRM - Gestión Comercial y Pipeline de Ventas</option>
+                    <option value="DAKO·DEV - Aplicaciones Web a Medida" class="bg-dark text-white">DAKO·DEV - Aplicaciones Web a Medida</option>
+                    <option value="DAKO·WEB - Landing Pages y Sitios Institucionales" class="bg-dark text-white">DAKO·WEB - Landing Pages y Sitios Institucionales</option>
                   </select>
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-400 mb-2">Mensaje</label>
+                  <label for="contact-message" class="block text-sm font-medium text-gray-400 mb-2">Mensaje</label>
                   <textarea
                     rows="4"
+                    id="contact-message"
                     name="message"
                     required
-                    class="w-full bg-dark-lighter/80 border border-gray-800 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-accent-cyan/50 focus:ring-1 focus:ring-accent-cyan/50 transition-colors placeholder-gray-600"
+                    class="w-full bg-dark-lighter/80 border border-white/40 rounded-xl px-4 py-3.5 text-white focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/40 transition-colors placeholder-gray-400"
                     placeholder="Ej: Necesito una web para mi negocio / un sistema para controlar stock..."
                   ></textarea>
                 </div>
               </div>
               <div class="pt-8 mt-auto">
+                <p
+                  id="form-error"
+                  role="alert"
+                  class="hidden mb-4 p-4 rounded-2xl bg-red-500/10 border border-red-500/30 text-red-300 text-sm"
+                >
+                </p>
+                <p id="form-status" role="status" aria-live="polite" class="sr-only"></p>
                 <button
                   type="submit"
                   id="submit-btn"
@@ -308,7 +330,7 @@ import Layout from "../layouts/Layout.astro";
 
     /* Style select options for dark theme */
     select option {
-      background-color: #0a0a0f;
+      background-color: #0a0f14;
       color: white;
       padding: 12px;
     }
@@ -321,12 +343,24 @@ import Layout from "../layouts/Layout.astro";
       const btnText = document.getElementById('btn-text') as HTMLSpanElement;
       const btnSpinner = document.getElementById('btn-spinner') as SVGElement;
       const successOverlay = document.getElementById('success-overlay') as HTMLDivElement;
+      const errorBox = document.getElementById('form-error') as HTMLParagraphElement;
+      const statusBox = document.getElementById('form-status') as HTMLParagraphElement;
 
       if (!form) return;
 
+      // Un alert() del sistema rompe el contexto visual justo en el punto de
+      // conversión y no lo anuncia ningún lector de pantalla de forma útil.
+      const showError = (msg: string) => {
+        if (!errorBox) return;
+        errorBox.textContent = msg;
+        errorBox.classList.remove('hidden');
+      };
+      const clearError = () => errorBox?.classList.add('hidden');
+
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+        clearError();
+
         // Show loading state
         submitBtn.disabled = true;
         btnText.textContent = 'Enviando...';
@@ -353,17 +387,28 @@ import Layout from "../layouts/Layout.astro";
             // Show success animation
             successOverlay.classList.add('show');
             form.reset();
-            
+            // El overlay es aria-hidden (es decoración): el anuncio real para
+            // lectores de pantalla va por la región de estado.
+            if (statusBox)
+              statusBox.textContent =
+                'Consulta enviada. Te respondemos en menos de 24 hs hábiles.';
+
             // Hide after 4 seconds
             setTimeout(() => {
               successOverlay.classList.remove('show');
             }, 4000);
           } else {
-            alert('Error al enviar: ' + (result.error || 'Intenta nuevamente'));
+            showError(
+              'No pudimos enviar tu consulta: ' +
+                (result.error || 'probá de nuevo en un momento') +
+                '. También podés escribirnos por WhatsApp.',
+            );
           }
         } catch (error) {
           console.error('Error:', error);
-          alert('Error de conexión. Por favor intenta nuevamente.');
+          showError(
+            'Hubo un problema de conexión. Probá de nuevo o escribinos por WhatsApp.',
+          );
         } finally {
           // Reset button state
           submitBtn.disabled = false;

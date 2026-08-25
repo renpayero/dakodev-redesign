@@ -10,8 +10,8 @@ const resend = new Resend(import.meta.env.RESEND_API_KEY);
 const TEAM_EMAIL = "renzopayero@hotmail.com";
 
 const productLabels: Record<string, string> = {
-  crm: "DAKO・CRM (USD 300)",
-  web: "DAKO・WEB (USD 80)",
+  crm: "DAKO·CRM (USD 300)",
+  web: "DAKO·WEB (USD 80)",
 };
 
 /**

@@ -6,13 +6,13 @@ const status = (Astro.url.searchParams.get("status") || "approved").toLowerCase(
 
 const productInfo: Record<string, { name: string; nextStep: string; color: string }> = {
   crm: {
-    name: "DAKO・CRM",
+    name: "DAKO·CRM",
     nextStep:
       "desplegar tu CRM personalizado y configurar tus credenciales de acceso",
     color: "accent-cyan",
   },
   web: {
-    name: "DAKO・WEB",
+    name: "DAKO·WEB",
     nextStep:
       "iniciar el relevamiento de tu sitio y empezar el diseño",
     color: "accent-cyan",
@@ -31,7 +31,11 @@ const title = isApproved
   : `Pago pendiente | Dakodev`;
 ---
 
-<Layout title={title}>
+<Layout
+  title={title}
+  description="Reserva confirmada. Te contactamos en menos de 24 hs hábiles."
+  noindex
+>
   <main class="min-h-[80vh] pt-32 pb-20 relative z-10 flex items-center">
     <!-- Decorative orbs -->
     <div
@@ -47,7 +51,7 @@ const title = isApproved
 
     <div class="container mx-auto px-6 relative z-10">
       <div
-        class="max-w-3xl mx-auto text-center glass rounded-3xl border border-white/10 p-10 md:p-16 opacity-0 scale-90"
+        class="max-w-3xl mx-auto text-center glass rounded-3xl border border-white/10 p-10 md:p-16 opacity-0 reveal-zoom-90"
         id="gr-card"
       >
         {
@@ -90,12 +94,12 @@ const title = isApproved
               <p id="gr-text" class="text-gray-300 text-lg md:text-xl leading-relaxed mb-8 opacity-0">
                 Recibimos tu pago de reserva por <strong class="text-white">{info.name}</strong>.
                 En menos de <strong class="text-accent-cyan">24 horas hábiles</strong> alguien del
-                equipo de Dakodev se va a contactar contigo para {info.nextStep}.
+                equipo de Dakodev se va a contactar con vos para {info.nextStep}.
               </p>
 
               <div
                 id="gr-line"
-                class="h-1 bg-gradient-to-r from-accent-cyan to-accent-blue rounded-full mb-10 w-0 mx-auto"
+                class="h-1 bg-linear-to-r from-accent-cyan to-accent-blue rounded-full mb-10 w-0 mx-auto"
               >
               </div>
             </>
@@ -149,7 +153,7 @@ const title = isApproved
           </a>
           <a
             href="/"
-            class="px-8 py-4 border border-white/20 text-white font-medium rounded-xl hover:border-accent-cyan/50 hover:text-accent-cyan transition-all duration-300"
+            class="px-8 py-4 border border-white/40 text-white font-medium rounded-xl hover:border-accent-cyan/50 hover:text-accent-cyan transition-all duration-300"
           >
             Ir al Inicio
           </a>
@@ -186,7 +190,7 @@ const title = isApproved
       x: -50, y: 30, duration: 9, yoyo: true, repeat: -1, ease: "sine.inOut",
     });
 
-    // Card scale-in (HTML inicia en opacity-0 scale-90)
+    // Card scale-in (HTML inicia en opacity-0 reveal-zoom-90)
     gsap.to("#gr-card", {
       scale: 1, opacity: 1, duration: 1, ease: "back.out(1.4)",
     });

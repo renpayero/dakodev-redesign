@@ -23,7 +23,7 @@
   <div class="pt-32 pb-20 relative" id="mvv-mision-stage">
     <div class="container mx-auto px-6 relative z-10">
       <span
-        class="text-accent-cyan font-bold tracking-widest uppercase text-sm mb-6 block mvv-trigger opacity-0 translate-y-10"
+        class="text-accent-cyan font-bold tracking-widest uppercase text-sm mb-4 block mvv-trigger opacity-0 reveal-up-sm"
         id="mvv-badge"
       >
         Misión, Visión & Valores
@@ -32,14 +32,14 @@
       <div class="max-w-5xl" id="mvv-mision-block">
         <h2
           id="mvv-heading"
-          class="font-heading text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-none mvv-trigger opacity-0 translate-y-10"
+          class="font-heading text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-none mvv-trigger opacity-0 reveal-up-sm"
         >
           <span class="text-gradient glow-text">MISIÓN</span>
         </h2>
 
         <p
           id="mvv-mision-text"
-          class="text-gray-300 text-xl md:text-2xl lg:text-3xl leading-relaxed font-light max-w-4xl mvv-trigger opacity-0 translate-y-10"
+          class="text-gray-300 text-xl md:text-2xl lg:text-3xl leading-relaxed lg:leading-snug font-normal max-w-4xl mvv-trigger opacity-0 reveal-up-sm"
         >
           Diseñamos e implementamos soluciones de software empresarial para
           maximizar el potencial de las empresas en crecimiento, con la
@@ -48,7 +48,7 @@
 
         <div
           id="mvv-mision-line"
-          class="h-1 bg-gradient-to-r from-accent-cyan to-accent-blue rounded-full mt-8 w-0"
+          class="h-1 bg-linear-to-r from-accent-cyan to-accent-blue rounded-full mt-8 w-0"
         >
         </div>
       </div>
@@ -60,14 +60,14 @@
     <div class="container mx-auto px-6 relative z-10">
       <div class="max-w-5xl ml-auto text-right" id="mvv-vision-block">
         <h2
-          class="font-heading text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-none mvv-trigger opacity-0 translate-y-10"
+          class="font-heading text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-none mvv-trigger opacity-0 reveal-up-sm"
         >
           <span class="text-gradient glow-text">VISIÓN</span>
         </h2>
 
         <p
           id="mvv-vision-text"
-          class="text-gray-300 text-xl md:text-2xl lg:text-3xl leading-relaxed font-light max-w-4xl ml-auto mvv-trigger opacity-0 translate-y-10"
+          class="text-gray-300 text-xl md:text-2xl lg:text-3xl leading-relaxed lg:leading-snug font-normal max-w-4xl ml-auto mvv-trigger opacity-0 reveal-up-sm"
         >
           Ser el partner tecnológico de referencia para las empresas y negocios
           de habla hispana que buscan digitalizar su negocio con tecnología de
@@ -76,7 +76,7 @@
 
         <div
           id="mvv-vision-line"
-          class="h-1 bg-gradient-to-r from-accent-blue to-accent-teal rounded-full mt-8 w-0 ml-auto"
+          class="h-1 bg-linear-to-r from-accent-cyan to-accent-blue rounded-full mt-8 w-0 ml-auto"
         >
         </div>
       </div>
@@ -88,7 +88,7 @@
     <div class="container mx-auto px-6 relative z-10">
       <div class="text-center mb-16">
         <h2
-          class="font-heading text-5xl md:text-7xl lg:text-8xl font-bold leading-none mvv-trigger opacity-0 scale-75"
+          class="font-heading text-5xl md:text-7xl lg:text-8xl font-bold leading-none mvv-trigger opacity-0 reveal-zoom"
           id="mvv-valores-heading"
         >
           <span class="text-gradient glow-text">VALORES</span>
@@ -98,9 +98,10 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         <!-- Valor 1 -->
         <div
-          class="glass p-8 rounded-3xl border border-white/5 hover:border-accent-cyan/30 transition-all duration-500 mvv-valor-card opacity-0 translate-y-12 group relative flex items-center gap-5"
+          class="glass p-8 rounded-3xl border border-white/10 hover:border-accent-cyan/50 transition-colors duration-500 mvv-valor-card opacity-0 reveal-up group relative flex items-center gap-5"
         >
           <div
+            aria-hidden="true"
             class="shrink-0 w-12 h-12 rounded-xl bg-accent-cyan/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
           >
             <span
@@ -108,16 +109,17 @@
               id="mvv-counter-1">01</span
             >
           </div>
-          <p class="font-heading text-lg md:text-xl font-semibold text-gray-200">
+          <h3 class="font-heading text-lg md:text-xl font-semibold text-gray-200">
             Comunicación clara y compromiso real.
-          </p>
+          </h3>
         </div>
 
         <!-- Valor 2 -->
         <div
-          class="glass p-8 rounded-3xl border border-white/5 hover:border-accent-blue/30 transition-all duration-500 mvv-valor-card opacity-0 translate-y-12 group relative flex items-center gap-5"
+          class="glass p-8 rounded-3xl border border-white/10 hover:border-accent-blue/50 transition-colors duration-500 mvv-valor-card opacity-0 reveal-up group relative flex items-center gap-5"
         >
           <div
+            aria-hidden="true"
             class="shrink-0 w-12 h-12 rounded-xl bg-accent-blue/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
           >
             <span
@@ -125,16 +127,17 @@
               id="mvv-counter-2">02</span
             >
           </div>
-          <p class="font-heading text-lg md:text-xl font-semibold text-gray-200">
+          <h3 class="font-heading text-lg md:text-xl font-semibold text-gray-200">
             Trabajo de calidad con excelencia técnica.
-          </p>
+          </h3>
         </div>
 
         <!-- Valor 3 -->
         <div
-          class="glass p-8 rounded-3xl border border-white/5 hover:border-accent-teal/30 transition-all duration-500 mvv-valor-card opacity-0 translate-y-12 group relative flex items-center gap-5"
+          class="glass p-8 rounded-3xl border border-white/10 hover:border-accent-teal/50 transition-colors duration-500 mvv-valor-card opacity-0 reveal-up group relative flex items-center gap-5"
         >
           <div
+            aria-hidden="true"
             class="shrink-0 w-12 h-12 rounded-xl bg-accent-teal/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
           >
             <span
@@ -142,16 +145,17 @@
               id="mvv-counter-3">03</span
             >
           </div>
-          <p class="font-heading text-lg md:text-xl font-semibold text-gray-200">
+          <h3 class="font-heading text-lg md:text-xl font-semibold text-gray-200">
             Proactividad.
-          </p>
+          </h3>
         </div>
 
         <!-- Valor 4 -->
         <div
-          class="glass p-8 rounded-3xl border border-white/5 hover:border-accent-cyan/30 transition-all duration-500 mvv-valor-card opacity-0 translate-y-12 group relative flex items-center gap-5"
+          class="glass p-8 rounded-3xl border border-white/10 hover:border-accent-cyan/50 transition-colors duration-500 mvv-valor-card opacity-0 reveal-up group relative flex items-center gap-5"
         >
           <div
+            aria-hidden="true"
             class="shrink-0 w-12 h-12 rounded-xl bg-accent-cyan/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
           >
             <span
@@ -159,9 +163,9 @@
               id="mvv-counter-4">04</span
             >
           </div>
-          <p class="font-heading text-lg md:text-xl font-semibold text-gray-200">
+          <h3 class="font-heading text-lg md:text-xl font-semibold text-gray-200">
             Crecimiento compartido.
-          </p>
+          </h3>
         </div>
       </div>
     </div>
@@ -171,10 +175,38 @@
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import {
+    armScramble,
+    freezeScramble,
+    playScramble,
+    prefersReducedMotion,
+  } from "../lib/scramble";
 
   gsap.registerPlugin(ScrollTrigger);
 
   const initMVVAnimations = () => {
+    const root = document.getElementById("mision-vision-valores");
+    if (!root) return;
+
+    // Astro dispara astro:page-load también en la carga inicial, así que esto
+    // corría dos veces por página. El flag vive en el DOM porque View
+    // Transitions reemplaza el nodo en cada navegación.
+    if (root.dataset.animated === "true") {
+      ScrollTrigger.refresh();
+      return;
+    }
+    root.dataset.animated = "true";
+
+    // Con movimiento reducido el CSS ya revela todo: no se anima nada y los
+    // contadores quedan directamente en su valor final.
+    if (prefersReducedMotion()) {
+      ["01", "02", "03", "04"].forEach((v, i) => {
+        const el = document.getElementById(`mvv-counter-${i + 1}`);
+        if (el) el.textContent = v;
+      });
+      return;
+    }
+
     // Kill only this section's ScrollTriggers
     ScrollTrigger.getAll()
       .filter((st: any) => st.vars?.id?.startsWith("mvv-"))
@@ -342,7 +374,10 @@
       });
     });
 
-    // Counter number scramble effect (like Loader)
+    // ── Scramble de los contadores 01-04 ──
+    // Antes el handle del setInterval era local al onEnter, invisible desde
+    // onLeaveBack: ese handler escribía el valor final y dejaba el intervalo
+    // corriendo, que volvía a pisarlo con ruido.
     const counterIds = [
       "mvv-counter-1",
       "mvv-counter-2",
@@ -350,45 +385,27 @@
       "mvv-counter-4",
     ];
     const counterFinals = ["01", "02", "03", "04"];
-    const scrambleChars = "0123456789!@#$%";
+    const nothingIsStatic = () => false;
 
     counterIds.forEach((id, i) => {
       const el = document.getElementById(id);
       if (!el) return;
+      const final = counterFinals[i];
 
       ScrollTrigger.create({
         id: `mvv-counter-${i}`,
         trigger: el,
-        start: "top 85%",
-        onEnter: () => {
-          let iterations = 0;
-          const maxIterations = 50;
-          const interval = setInterval(() => {
-            el.textContent = counterFinals[i]
-              .split("")
-              .map((char, idx) => {
-                if (
-                  idx <
-                  iterations / (maxIterations / counterFinals[i].length)
-                ) {
-                  return counterFinals[i][idx];
-                }
-                return scrambleChars[
-                  Math.floor(Math.random() * scrambleChars.length)
-                ];
-              })
-              .join("");
-            if (iterations >= maxIterations) {
-              clearInterval(interval);
-              el.textContent = counterFinals[i];
-            }
-            iterations++;
-          }, 1000 / 25);
-        },
-        onLeaveBack: () => {
-          el.textContent = counterFinals[i];
-        },
+        start: "top bottom",
+        end: "top 85%",
+        onEnter: () => playScramble(el, final, nothingIsStatic),
+        onLeave: () => freezeScramble(el, final),
+        onEnterBack: () => freezeScramble(el, final),
+        onLeaveBack: () => armScramble(el, final, nothingIsStatic),
       });
+
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.85) {
+        freezeScramble(el, final);
+      }
     });
   };
 

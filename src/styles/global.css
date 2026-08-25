@@ -9,17 +9,28 @@
   --color-accent-blue: #00b4d8;
   --color-accent-teal: #00d1b2;
 
-  --font-sans: Inter, sans-serif;
-  --font-heading: Outfit, sans-serif;
-  --font-wordmark: Montserrat, sans-serif;
+  /* Stacks con fallback nombrado: sin esto el texto se pinta en la genérica
+     sans-serif (Arial) mientras cargan las webfonts, y salta al cambiar. */
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-heading: Outfit, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-wordmark:
+    Montserrat, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+
+  /* Glow de marca — mismos valores que ya estaban escritos a mano en Navbar */
+  --drop-shadow-glow-sm: 0 0 12px rgba(0, 245, 212, 0.35);
+  --shadow-glow: 0 0 20px rgba(0, 245, 212, 0.4);
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @layer utilities {
+  /* .glass NO declara borde: como utilidad se emite después de las utilidades
+     border-* y, con la misma especificidad, les ganaba. Eso hacía que el badge
+     del hero perdiera su anilla cyan y que varios `border-white/5` del markup
+     fueran código muerto. Cada uso declara su propio borde. */
   .glass {
-    @apply bg-dark-card backdrop-blur-xl border border-white/10;
+    @apply bg-dark-card backdrop-blur-xl;
   }
 
   .text-gradient {
@@ -40,6 +51,56 @@
         transparent 50%
       ),
       radial-gradient(at 0% 100%, rgba(0, 180, 216, 0.1) 0px, transparent 50%);
+  }
+
+  /* ── Estado inicial de los scroll-reveal, usando TRANSFORM ──
+     Tailwind v4 compila las utilidades de desplazamiento y escala a las
+     propiedades CSS `translate:` y `scale:`, mientras GSAP anima `transform:`.
+     Son propiedades independientes que se COMPONEN en vez de pisarse, así que
+     el offset inicial quedaba aplicado de forma permanente y nada se movía.
+     Estas clases usan `transform`, que es lo que GSAP realmente anima.
+     Los rem son idénticos a los de las utilidades que reemplazan. */
+  .reveal-up {
+    transform: translateY(3rem);
+  }
+  .reveal-up-sm {
+    transform: translateY(2.5rem);
+  }
+  .reveal-up-hero {
+    transform: translateY(2rem);
+  }
+  .reveal-up-xs {
+    transform: translateY(1.5rem);
+  }
+  .reveal-up-2xs {
+    transform: translateY(1rem);
+  }
+  .reveal-zoom {
+    transform: scale(0.75);
+  }
+  .reveal-zoom-90 {
+    transform: scale(0.9);
+  }
+  .reveal-zoom-50 {
+    transform: scale(0.5);
+  }
+  .reveal-down-full {
+    transform: translateY(100%);
+  }
+}
+
+@layer base {
+  /* Único indicador de foco del sitio. `:where` da especificidad 0 para que
+     cualquier clase lo pueda pisar. Sin `border-radius: inherit`: eso
+     cuadraría todos los rounded-xl/rounded-full al recibir foco. */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-accent-cyan);
+    outline-offset: 3px;
+  }
+
+  /* El navbar fijo mide 72px: que ningún ancla quede tapada */
+  [id] {
+    scroll-margin-top: 6rem;
   }
 }
 
@@ -99,8 +160,34 @@ html {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important; /* sin esto el hero queda 3,6s en blanco */
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
     scroll-behavior: auto !important;
+  }
+
+  /* El selector universal NO matchea pseudo-elementos de view-transition */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+
+  .animate-marquee {
+    animation: none !important;
+  }
+
+  /* RED DE SEGURIDAD: el contenido nace en opacity-0 y depende de JS para
+     revelarse. Esto garantiza que sea visible aunque GSAP nunca corra.
+     Va ANTES que cualquier guard de reduced-motion en JS.
+     Se apunta a [data-reveal] y a las clases .reveal-* — nunca a .opacity-0,
+     porque los overlays de éxito y del menú móvil también usan opacity-0 y
+     deben seguir ocultos. */
+  [data-reveal],
+  [class*="reveal-up"],
+  [class*="reveal-zoom"],
+  [class*="reveal-down"] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

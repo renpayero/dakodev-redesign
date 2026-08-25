@@ -16,7 +16,8 @@ import TechStackMarquee from "./TechStackMarquee.astro";
   <div class="container mx-auto px-6 relative z-10">
     <!-- Vision Header -->
     <div
-      class="max-w-4xl mx-auto text-center mb-24 opacity-0 translate-y-10"
+      data-reveal
+      class="max-w-4xl mx-auto text-center mb-24 opacity-0 reveal-up-sm"
       id="about-header"
     >
       <span
@@ -27,7 +28,7 @@ import TechStackMarquee from "./TechStackMarquee.astro";
         id="about-heading"
         class="font-heading text-4xl md:text-6xl font-bold mb-8 leading-tight"
       >
-        No hacemos "sitios web". <br />
+        No hacemos «sitios web». <br class="hidden md:inline" />
         <span class="text-gradient">Diseñamos Activos Digitales.</span>
       </h2>
       <p
@@ -35,7 +36,7 @@ import TechStackMarquee from "./TechStackMarquee.astro";
       >
         Dakodev nace para cerrar la brecha entre el diseño estético y la
         ingeniería robusta. Liderados por especialistas en sistemas, aplicamos
-        estándares corporativos a cada píxel.
+        estándares corporativos a cada proceso que digitalizamos.
       </p>
     </div>
 
@@ -43,36 +44,39 @@ import TechStackMarquee from "./TechStackMarquee.astro";
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
       <!-- Card 1 -->
       <div
-        class="glass p-8 rounded-3xl border border-white/5 opacity-0 translate-y-12 hover:border-accent-cyan/30 transition-colors duration-500 about-card"
+        data-reveal
+        class="glass p-8 rounded-3xl border border-white/10 opacity-0 reveal-up hover:border-accent-cyan/50 transition-colors duration-500 about-card"
       >
-        <div class="text-5xl mb-6 text-accent-cyan">01.</div>
-        <h3 class="text-2xl font-bold mb-4 font-heading">Ingeniería (SOLID)</h3>
+        <div class="text-5xl mb-6 text-accent-cyan" aria-hidden="true">01.</div>
+        <h3 class="font-heading text-2xl font-bold mb-4">Ingeniería que Escala</h3>
         <p class="text-gray-400 leading-relaxed">
-          Código limpio, escalable y mantenible. No creemos en soluciones
-          "parche". Construimos cimientos sólidos para tu crecimiento.
+          Código limpio, escalable y mantenible — SOLID, sin parches. El sistema
+          que ponemos hoy aguanta el volumen que vas a tener en tres años.
         </p>
       </div>
 
       <!-- Card 2 -->
       <div
-        class="glass p-8 rounded-3xl border border-white/5 opacity-0 translate-y-12 hover:border-accent-blue/30 transition-colors duration-500 about-card"
+        data-reveal
+        class="glass p-8 rounded-3xl border border-white/10 opacity-0 reveal-up hover:border-accent-blue/50 transition-colors duration-500 about-card"
       >
-        <div class="text-5xl mb-6 text-accent-blue">02.</div>
-        <h3 class="text-2xl font-bold mb-4 font-heading">Diseño Estratégico</h3>
+        <div class="text-5xl mb-6 text-accent-blue" aria-hidden="true">02.</div>
+        <h3 class="font-heading text-2xl font-bold mb-4">Diseño Estratégico</h3>
         <p class="text-gray-400 leading-relaxed">
-          Cada animación y micro-interacción tiene un propósito: guiar al
-          usuario y maximizar la conversión.
+          Cada pantalla tiene un propósito: menos pasos por tarea. Un sistema
+          que el equipo evita usar no ahorra nada.
         </p>
       </div>
 
       <!-- Card 3 -->
       <div
-        class="glass p-8 rounded-3xl border border-white/5 opacity-0 translate-y-12 hover:border-accent-teal/30 transition-colors duration-500 about-card"
+        data-reveal
+        class="glass p-8 rounded-3xl border border-white/10 opacity-0 reveal-up hover:border-accent-teal/50 transition-colors duration-500 about-card"
       >
-        <div class="text-5xl mb-6 text-accent-teal">03.</div>
-        <h3 class="text-2xl font-bold mb-4 font-heading">Transparencia</h3>
+        <div class="text-5xl mb-6 text-accent-teal" aria-hidden="true">03.</div>
+        <h3 class="font-heading text-2xl font-bold mb-4">Transparencia</h3>
         <p class="text-gray-400 leading-relaxed">
-          Comunicación directa y sin tecnicismos innecesarios. Sabrás
+          Comunicación directa y sin tecnicismos innecesarios. Vas a saber
           exactamente qué estamos construyendo y por qué.
         </p>
       </div>
@@ -82,10 +86,8 @@ import TechStackMarquee from "./TechStackMarquee.astro";
   </div>
 
   <!-- Tech Stack (full-width, outside container) -->
-  <div class="opacity-0" id="tech-stack-section">
-    <h3
-      class="text-center font-heading text-2xl font-bold mb-12 text-gray-500 uppercase tracking-widest"
-    >
+  <div class="opacity-0" id="tech-stack-section" data-reveal>
+    <h3 class="text-center font-heading text-2xl font-bold mb-12 text-gray-400">
       Tecnologías que Usamos
     </h3>
     <TechStackMarquee />
@@ -99,6 +101,22 @@ import TechStackMarquee from "./TechStackMarquee.astro";
   gsap.registerPlugin(ScrollTrigger);
 
   const initAboutAnimations = () => {
+    const root = document.getElementById("nosotros");
+    if (!root) return;
+
+    // Astro dispara astro:page-load también en la carga inicial, así que esta
+    // función corría dos veces por página. Con View Transitions el nodo se
+    // reemplaza, por eso el flag vive en el DOM y no en el módulo.
+    if (root.dataset.animated === "true") {
+      ScrollTrigger.refresh();
+      return;
+    }
+    root.dataset.animated = "true";
+
+    // Con movimiento reducido el CSS ya deja visible todo lo que tiene
+    // data-reveal; no hace falta (ni conviene) animar nada.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     // Kill only THIS section's ScrollTriggers (scoped to about- prefix)
     ScrollTrigger.getAll()
       .filter((st: any) => st.vars?.id?.startsWith("about-"))

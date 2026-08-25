@@ -5,14 +5,14 @@ import { whatsappLink } from "../lib/whatsapp";
 const verticales = [
   {
     key: "erp",
-    code: "DAKO・ERP",
+    code: "DAKO·ERP",
     letter: "E",
     accent: "blue",
     tier: "tailored",
     tagline: "Gestión Empresarial Integral",
     audience: "Para Empresas en Crecimiento",
     description:
-      "Implementación de Odoo adaptada a tu operación real. Digitalizamos ventas, compras, inventario, contabilidad, manufactura y RRHH en una sola plataforma.",
+      "Implementación de Odoo adaptada a tu operación real: ventas, compras, inventario, contabilidad, manufactura y RRHH en una sola plataforma, con menos carga manual en cada área.",
     features: [
       "Ventas, Compras, Inventario y Contabilidad integrados.",
       "Facturación electrónica (AFIP / normativa local).",
@@ -20,19 +20,19 @@ const verticales = [
       "Dashboards de gestión en tiempo real.",
     ],
     aiNote:
-      "IA integrada: predicción de demanda, análisis automatizado de datos.",
+      "IA integrada: predicción de demanda y análisis automático de datos — menos sobrestock, menos quiebres.",
     payable: false,
   },
   {
     key: "crm",
-    code: "DAKO・CRM",
+    code: "DAKO·CRM",
     letter: "C",
     accent: "cyan",
     tier: "express",
     tagline: "Gestión Comercial y Pipeline de Ventas",
     audience: "Para Equipos Comerciales",
     description:
-      "Un CRM que tu equipo realmente va a usar. Pipeline visual, seguimientos automáticos y facturación electrónica integrada.",
+      "Un CRM que tu equipo realmente va a usar. Pipeline visual, seguimientos que se disparan solos y facturación integrada. Menos oportunidades perdidas por olvido.",
     features: [
       "Pipeline visual con etapas personalizadas.",
       "Seguimiento automático de oportunidades.",
@@ -40,7 +40,7 @@ const verticales = [
       "Facturación electrónica desde la oportunidad ganada.",
     ],
     aiNote:
-      "IA integrada: scoring de leads, sugerencia de próxima acción, análisis de sentimiento.",
+      "IA integrada: scoring de leads, próxima acción sugerida y análisis de sentimiento. Menos tiempo en oportunidades frías.",
     payable: true,
     priceUsd: 300,
     priceLabel: "Empezá ya tu despliegue prioritario",
@@ -49,14 +49,14 @@ const verticales = [
   },
   {
     key: "dev",
-    code: "DAKO・DEV",
+    code: "DAKO·DEV",
     letter: "D",
     accent: "blue",
     tier: "tailored",
     tagline: "Aplicaciones Web a Medida",
     audience: "Para Necesidades Específicas",
     description:
-      "Cuando el software del mercado no alcanza, lo construimos. Portales de clientes, plataformas SaaS o integraciones complejas.",
+      "Cuando el software del mercado no alcanza, lo construimos. Portales de clientes, plataformas SaaS e integraciones que eliminan el trabajo entre sistemas.",
     features: [
       "Portales de autoservicio para clientes.",
       "Plataformas SaaS y sistemas internos.",
@@ -64,26 +64,27 @@ const verticales = [
       "UX/UI premium con experiencia App-Like.",
     ],
     aiNote:
-      "IA integrada: chatbots inteligentes, procesamiento de documentos, IA generativa.",
+      "IA integrada: asistentes conversacionales, procesamiento de documentos e IA generativa. Menos carga manual, menos errores.",
     payable: false,
   },
   {
     key: "web",
-    code: "DAKO・WEB",
+    code: "DAKO·WEB",
     letter: "W",
     accent: "cyan",
     tier: "express",
     tagline: "Landing Pages y Sitios Institucionales",
     audience: "Para Profesionales y PyMEs",
     description:
-      "Tu presencia digital profesional, lista para vender desde el primer día. Sitios ultra-rápidos, optimizados para SEO y mobile.",
+      "Tu presencia digital profesional, lista para vender desde el primer día. Sitios ultra-rápidos, optimizados para SEO y mobile, con las consultas ya cargadas en tu CRM.",
     features: [
       "Diseño moderno, responsive y optimizado para SEO.",
       "Velocidad de carga instantánea (Astro + Tailwind).",
       "Hosting, SSL y actualizaciones incluidas.",
       "Sin mantenimiento técnico necesario.",
     ],
-    aiNote: null,
+    aiNote:
+      "IA integrada: contenido optimizado para SEO y calificación automática de las consultas que llegan por el formulario.",
     payable: true,
     priceUsd: 80,
     priceLabel: "Empezá ya tu desarrollo prioritario",
@@ -153,7 +154,10 @@ const transversales = [
 ];
 ---
 
-<Layout title="Servicios | Dakodev Software Solutions">
+<Layout
+  title="Servicios: ERP, CRM, Software a Medida y Web | Dakodev"
+  description="Cuatro verticales con IA, automatización de procesos y facturación electrónica integradas: ERP con Odoo, CRM, aplicaciones a medida y sitios web."
+>
   <main class="pt-32 pb-20 relative z-10 overflow-hidden">
     <!-- Decorative parallax orbs -->
     <div
@@ -177,22 +181,22 @@ const transversales = [
       <div class="max-w-3xl mb-20">
         <div
           id="srv-badge"
-          class="text-accent-cyan font-bold tracking-widest uppercase text-sm mb-4 opacity-0 translate-y-6"
+          class="text-accent-cyan font-bold tracking-widest uppercase text-sm mb-4 opacity-0 reveal-up-xs"
         >
           Especialización
         </div>
         <h1
           id="srv-title"
-          class="font-heading text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight opacity-0 translate-y-10"
+          class="font-heading text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight opacity-0 reveal-up-sm"
         >
           Nuestras <span class="text-gradient glow-text">Verticales</span>
         </h1>
         <p
           id="srv-intro"
-          class="text-gray-400 text-lg md:text-xl leading-relaxed opacity-0 translate-y-10"
+          class="text-gray-400 text-lg md:text-xl leading-relaxed max-w-2xl opacity-0 reveal-up-sm"
         >
           <span
-            class="text-gray-100 font-semibold border-b-2 border-accent-cyan/20"
+            class="text-gray-100 font-semibold border-b-2 border-accent-cyan/50"
           >
             Simplificamos lo complejo.
           </span> Desde la presencia digital hasta el núcleo operativo de tu empresa,
@@ -201,21 +205,21 @@ const transversales = [
         </p>
         <div
           id="srv-hero-line"
-          class="h-1 bg-gradient-to-r from-accent-cyan to-accent-blue rounded-full mt-8 w-0"
+          class="h-1 bg-linear-to-r from-accent-cyan to-accent-blue rounded-full mt-8 w-0"
         >
         </div>
       </div>
 
       <!-- GRID DE 4 VERTICALES -->
       <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-32"
+        class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-32"
       >
         {
           verticales.map((v) => {
             const c = accentClasses[v.accent as keyof typeof accentClasses];
             return (
               <article
-                class={`srv-card opacity-0 translate-y-12 glass p-7 md:p-8 rounded-3xl border border-white/5 ${c.hover} transition-all duration-500 group relative overflow-hidden flex flex-col`}
+                class={`srv-card opacity-0 reveal-up glass p-8 rounded-3xl border border-white/10 ${c.hover} transition-colors duration-500 group relative overflow-hidden flex flex-col`}
               >
                 {/* Letra de fondo */}
                 <div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none">
@@ -250,55 +254,64 @@ const transversales = [
                   )}
                 </div>
 
-                <h3 class="font-heading text-2xl font-bold mb-1">{v.code}</h3>
+                <h2 class="font-heading text-2xl font-bold mb-1">{v.code}</h2>
                 <p class={`text-sm font-medium ${c.text} mb-4`}>{v.tagline}</p>
-                <div class="mb-5">
-                  <span class={`px-3 py-1 ${c.pillBg} ${c.pillText} rounded-full text-[11px] font-bold uppercase tracking-wide`}>
+                <div class="mb-6">
+                  <span class={`px-3 py-1 ${c.bgSoft} ${c.text} border ${c.borderSoft} rounded-full text-xs font-bold uppercase tracking-widest`}>
                     {v.audience}
                   </span>
                 </div>
 
-                <p class="text-gray-300 mb-5 text-base leading-relaxed">
+                <p class="text-gray-300 mb-6 text-base leading-relaxed">
                   {v.description}
                 </p>
 
-                <ul class="space-y-2.5 text-sm text-gray-400 mb-6 grow">
+                <ul class="space-y-3 text-sm text-gray-400">
                   {v.features.map((f) => (
                     <li class="flex items-start">
-                      <span class={`${c.text} mr-2 font-bold shrink-0`}>✓</span>
+                      <span class={`${c.text} mr-2 font-bold shrink-0`} aria-hidden="true">✓</span>
                       <span>{f}</span>
                     </li>
                   ))}
                 </ul>
 
-                {v.aiNote && (
-                  <div class="mb-6 pt-4 border-t border-white/10">
-                    <p class={`text-xs ${c.text} font-medium leading-relaxed`}>
-                      ✨ {v.aiNote}
-                    </p>
-                  </div>
-                )}
-
-                {/* Bloque de precio (solo CRM/WEB) */}
-                {v.payable && (
-                  <div class="mb-6 p-4 rounded-2xl bg-dark/50 border border-white/10">
-                    <div class="flex items-baseline gap-2">
-                      <span
-                        class={`srv-price text-4xl font-black text-gradient leading-none`}
-                        data-final={v.priceUsd}
-                      >
-                        USD ${v.priceUsd}
-                      </span>
+                {/* Pie de la card: el `grow` del <ul> anulaba el `mt-auto` de
+                    los CTAs, así que las 4 cards terminaban a distinta altura
+                    y la línea del aiNote quedaba flotando lejos de su texto. */}
+                <div class="mt-auto pt-6 flex flex-col gap-6">
+                  {v.aiNote && (
+                    <div class="pt-4 border-t border-white/10">
+                      <p class={`text-xs ${c.text} font-medium leading-relaxed`}>
+                        ✨ {v.aiNote}
+                      </p>
                     </div>
-                    <p class="text-[11px] text-gray-400 uppercase tracking-wider mt-2 font-bold">
-                      {v.priceLabel}
-                    </p>
-                    <p class="text-xs text-gray-500 mt-1">{v.priceSubtitle}</p>
-                  </div>
-                )}
+                  )}
+
+                  {/* Bloque de precio (solo CRM/WEB) */}
+                  {v.payable && (
+                    <div class="p-4 rounded-2xl bg-dark/50 border border-white/10">
+                      <div class="flex items-baseline gap-2">
+                        {/* El texto visible lo reescribe la animación de
+                            scramble, así que el precio real se expone aparte
+                            para lectores de pantalla. */}
+                        <span class="sr-only">Precio: {v.priceUsd} dólares</span>
+                        <span
+                          aria-hidden="true"
+                          class={`srv-price font-heading text-4xl font-extrabold text-gradient leading-none`}
+                          data-final={v.priceUsd}
+                        >
+                          USD ${v.priceUsd}
+                        </span>
+                      </div>
+                      <p class="text-xs text-gray-400 uppercase tracking-widest mt-2 font-bold">
+                        {v.priceLabel}
+                      </p>
+                      <p class="text-xs text-gray-400 mt-1">{v.priceSubtitle}</p>
+                    </div>
+                  )}
 
                 {/* CTAs */}
-                <div class="flex flex-col gap-2 mt-auto">
+                <div class="flex flex-col gap-2">
                   {v.payable ? (
                     <>
                       <button
@@ -317,8 +330,8 @@ const transversales = [
                       <a
                         href={whatsappLink(v.code)}
                         target="_blank"
-                        rel="noopener"
-                        class={`w-full py-2.5 px-4 border border-white/15 text-white/90 font-medium rounded-xl ${c.hover} hover:text-white transition-all duration-300 inline-flex items-center justify-center gap-2 text-sm`}
+                        rel="noopener noreferrer"
+                        class={`w-full py-3 px-4 border border-white/40 text-white font-medium rounded-xl ${c.hover} hover:text-white transition-all duration-300 inline-flex items-center justify-center gap-2 text-sm`}
                       >
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.519 5.273l-.999 3.648 3.969-1.04z"/>
@@ -330,7 +343,7 @@ const transversales = [
                     <a
                       href={whatsappLink(v.code, "consultar")}
                       target="_blank"
-                      rel="noopener"
+                      rel="noopener noreferrer"
                       class={`w-full py-3 px-4 ${c.bg} text-dark font-bold rounded-xl hover:bg-white transition-all duration-300 shadow-lg ${c.shadow} inline-flex items-center justify-center gap-2 text-sm`}
                     >
                       <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -339,6 +352,7 @@ const transversales = [
                       Solicitar Asesoría
                     </a>
                   )}
+                </div>
                 </div>
               </article>
             );
@@ -355,38 +369,38 @@ const transversales = [
         <div class="max-w-3xl mb-12">
           <span
             id="srv-trans-badge"
-            class="text-accent-cyan font-bold tracking-widest uppercase text-sm mb-4 block opacity-0 translate-y-6"
+            class="text-accent-cyan font-bold tracking-widest uppercase text-sm mb-4 block opacity-0 reveal-up-xs"
           >
             Capacidades Transversales
           </span>
           <h2
             id="srv-trans-heading"
-            class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight opacity-0 translate-y-10"
+            class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight opacity-0 reveal-up-sm"
           >
             En el <span class="text-gradient glow-text">ADN</span> de cada solución
           </h2>
           <p
             id="srv-trans-intro"
-            class="text-gray-400 text-lg leading-relaxed opacity-0 translate-y-10"
+            class="text-gray-400 text-lg leading-relaxed max-w-2xl opacity-0 reveal-up-sm"
           >
-            Estas capacidades no se venden por separado: están integradas en
-            nuestras tres verticales principales. Es parte del flujo natural,
-            no un agregado externo.
+            Estas capacidades no se venden por separado: están integradas en las
+            cuatro verticales. Son parte del flujo de trabajo, no un agregado
+            externo.
           </p>
           <div
             id="srv-trans-line"
-            class="h-1 bg-gradient-to-r from-accent-cyan to-accent-teal rounded-full mt-8 w-0"
+            class="h-1 bg-linear-to-r from-accent-cyan to-accent-blue rounded-full mt-8 w-0"
           >
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           {
             transversales.map((t, i) => {
               const c = accentClasses[t.accent as keyof typeof accentClasses];
               return (
                 <div
-                  class={`srv-trans-card opacity-0 translate-y-12 glass p-8 rounded-3xl border border-white/5 ${c.hover} transition-all duration-500 group relative`}
+                  class={`srv-trans-card opacity-0 reveal-up glass p-8 rounded-3xl border border-white/10 ${c.hover} transition-colors duration-500 group relative`}
                 >
                   <div
                     class={`w-14 h-14 ${c.bgSoft} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
@@ -407,7 +421,7 @@ const transversales = [
                       </svg>
                     )}
                   </div>
-                  <div class={`text-[11px] font-bold uppercase tracking-widest ${c.text} mb-3`}>
+                  <div class={`text-xs font-bold uppercase tracking-widest ${c.text} mb-3`}>
                     0{i + 1}
                   </div>
                   <h3 class="font-heading text-2xl font-bold mb-3">{t.title}</h3>
@@ -420,8 +434,8 @@ const transversales = [
       </section>
 
       <!-- CTA FINAL -->
-      <div id="srv-final-cta" class="text-center max-w-2xl mx-auto opacity-0 translate-y-10">
-        <h2 class="font-heading text-3xl md:text-5xl font-bold mb-6 leading-tight">
+      <div id="srv-final-cta" class="text-center max-w-2xl mx-auto opacity-0 reveal-up-sm">
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
           ¿No estás seguro <span class="text-gradient">qué solución se ajusta a tu negocio</span>?
         </h2>
         <p class="text-gray-400 text-lg mb-8 leading-relaxed">
@@ -429,7 +443,7 @@ const transversales = [
           el camino que más impacto va a generar. Sin compromiso, en una conversación
           de 15 minutos.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a
             href="/contacto/"
             class="px-8 py-4 bg-accent-cyan text-dark font-bold rounded-xl hover:bg-white transition-all duration-300 shadow-lg shadow-accent-cyan/20 inline-flex items-center justify-center"
@@ -450,8 +464,8 @@ const transversales = [
           <a
             href={whatsappLink("una asesoría general", "consultar")}
             target="_blank"
-            rel="noopener"
-            class="px-8 py-4 border border-white/20 text-white font-medium rounded-xl hover:border-accent-cyan/50 hover:text-accent-cyan transition-all duration-300 inline-flex items-center justify-center gap-2"
+            rel="noopener noreferrer"
+            class="px-8 py-4 border border-white/40 text-white font-medium rounded-xl hover:border-accent-cyan/50 hover:text-accent-cyan transition-all duration-300 inline-flex items-center justify-center gap-2"
           >
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.519 5.273l-.999 3.648 3.969-1.04z"/>
@@ -509,28 +523,36 @@ const transversales = [
 
         <form id="srv-pay-form" class="space-y-4">
           <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+            <label
+              for="pay-name"
+              class="block text-sm font-medium text-gray-400 mb-2"
+            >
               Nombre completo
             </label>
             <input
               type="text"
+              id="pay-name"
               name="name"
               required
               autocomplete="name"
-              class="w-full bg-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-accent-cyan/60 transition-colors"
+              class="w-full bg-dark-lighter/80 border border-white/40 rounded-xl px-4 py-3.5 text-white placeholder-gray-400 focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/40 transition-colors"
               placeholder="Tu nombre y apellido"
             />
           </div>
           <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+            <label
+              for="pay-email"
+              class="block text-sm font-medium text-gray-400 mb-2"
+            >
               Email
             </label>
             <input
               type="email"
+              id="pay-email"
               name="email"
               required
               autocomplete="email"
-              class="w-full bg-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-accent-cyan/60 transition-colors"
+              class="w-full bg-dark-lighter/80 border border-white/40 rounded-xl px-4 py-3.5 text-white placeholder-gray-400 focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/40 transition-colors"
               placeholder="vos@empresa.com"
             />
           </div>
@@ -559,7 +581,7 @@ const transversales = [
             </svg>
           </button>
 
-          <p class="text-[11px] text-gray-500 text-center leading-relaxed">
+          <p class="text-xs text-gray-400 text-center leading-relaxed">
             Al continuar, aceptás que se procese un pago único de reserva en pesos al
             cambio oficial del día. El monto en USD se convierte automáticamente.
           </p>
@@ -572,11 +594,35 @@ const transversales = [
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import {
+    armScramble,
+    freezeScramble,
+    playScramble,
+    prefersReducedMotion,
+  } from "../lib/scramble";
 
   gsap.registerPlugin(ScrollTrigger);
 
   const initServiciosAnimations = () => {
-    if (!document.querySelector("#srv-title")) return;
+    const root = document.querySelector<HTMLElement>("#srv-title");
+    if (!root) return;
+
+    // Astro dispara astro:page-load también en la carga inicial: sin este
+    // guard todo el bloque corría dos veces por página.
+    if (root.dataset.animated === "true") {
+      ScrollTrigger.refresh();
+      return;
+    }
+    root.dataset.animated = "true";
+
+    // Con movimiento reducido el CSS ya revela el contenido; los precios se
+    // muestran directamente en su valor real, sin scramble.
+    if (prefersReducedMotion()) {
+      document.querySelectorAll<HTMLElement>(".srv-price").forEach((el) => {
+        el.textContent = (el.dataset.finalText || el.textContent || "").trim();
+      });
+      return;
+    }
 
     // Kill stale ScrollTriggers from this section only
     ScrollTrigger.getAll()
@@ -624,65 +670,34 @@ const transversales = [
     });
 
     // ── SCRAMBLE EN PRECIOS ──
-    const scrambleChars = "0123456789$%#@!";
+    // El alfabeto ya no contiene dígitos: el ruido nunca puede leerse como un
+    // precio. Y el ruido solo se escribe con el elemento FUERA de pantalla,
+    // así que un precio falso no puede quedar visible ni congelado.
     const isStaticChar = (c: string) =>
       c === " " || c === "$" || c === "U" || c === "S" || c === "D";
-    const scrambleString = (final: string) =>
-      final
-        .split("")
-        .map((c) =>
-          isStaticChar(c)
-            ? c
-            : scrambleChars[Math.floor(Math.random() * scrambleChars.length)]
-        )
-        .join("");
 
-    gsap.utils.toArray<HTMLElement>(".srv-price").forEach((el) => {
+    gsap.utils.toArray<HTMLElement>(".srv-price").forEach((el, i) => {
       const final = (el.dataset.finalText || el.textContent || "").trim();
       el.dataset.finalText = final;
 
-      // Estado inicial scrambled — el precio NO se revela hasta entrar al viewport
-      el.textContent = scrambleString(final);
-      let activeInterval: number | null = null;
-
       ScrollTrigger.create({
-        id: `srv-scramble-${el.dataset.final}`,
+        id: `srv-scramble-${i}`,
         trigger: el,
-        start: "top 92%",
-        once: false,
-        onEnter: () => {
-          if (activeInterval !== null) window.clearInterval(activeInterval);
-          let iterations = 0;
-          const maxIterations = 28;
-          activeInterval = window.setInterval(() => {
-            el.textContent = final
-              .split("")
-              .map((char, idx) => {
-                if (isStaticChar(char)) return char;
-                if (idx < iterations / (maxIterations / final.length)) {
-                  return final[idx];
-                }
-                return scrambleChars[
-                  Math.floor(Math.random() * scrambleChars.length)
-                ];
-              })
-              .join("");
-            if (iterations >= maxIterations) {
-              if (activeInterval !== null) window.clearInterval(activeInterval);
-              activeInterval = null;
-              el.textContent = final;
-            }
-            iterations++;
-          }, 1000 / 30);
-        },
-        onLeaveBack: () => {
-          if (activeInterval !== null) {
-            window.clearInterval(activeInterval);
-            activeInterval = null;
-          }
-          el.textContent = scrambleString(final);
-        },
+        start: "top bottom", // entra desde abajo, todavía fuera de pantalla
+        end: "top 92%", // ya está cómodamente visible
+        onEnter: () => playScramble(el, final, isStaticChar),
+        onLeave: () => freezeScramble(el, final),
+        onEnterBack: () => freezeScramble(el, final),
+        onLeaveBack: () => armScramble(el, final, isStaticChar),
       });
+
+      // Estado inicial explícito: si al cargar ya está visible, se muestra el
+      // precio real en vez de depender de que ScrollTrigger dispare.
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.92) {
+        freezeScramble(el, final);
+      } else {
+        armScramble(el, final, isStaticChar);
+      }
     });
 
     // ── SECCIÓN TRANSVERSALES ──
@@ -732,6 +747,12 @@ const transversales = [
     const summaryBox = document.getElementById("srv-pay-summary");
 
     if (!modal || !form || !submitBtn) return;
+
+    // CRÍTICO: sin este guard, initPayModal() corría dos veces en la carga
+    // inicial y quedaban DOS listeners de submit sobre el mismo formulario,
+    // así que cada click generaba dos preferencias de pago en MercadoPago.
+    if (modal.dataset.bound === "true") return;
+    modal.dataset.bound = "true";
 
     let currentProduct: string | null = null;
     let currentProductCode = "";
@@ -790,9 +811,26 @@ const transversales = [
 
     closeBtn?.addEventListener("click", closeModal);
     backdrop?.addEventListener("click", closeModal);
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !modal.classList.contains("hidden")) closeModal();
-    });
+
+    // `document` sobrevive a los swaps de View Transitions, así que este
+    // listener se remueve explícitamente para no acumular closures que
+    // apunten a modales ya desmontados.
+    const onKeydown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && !modal.classList.contains("hidden"))
+        closeModal();
+    };
+    document.addEventListener("keydown", onKeydown);
+
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        document.removeEventListener("keydown", onKeydown);
+        // Si se navega con el modal abierto, el scroll quedaba bloqueado en
+        // la página siguiente.
+        document.body.style.overflow = "";
+      },
+      { once: true },
+    );
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -827,7 +865,7 @@ const transversales = [
         if (summaryBox) {
           summaryBox.innerHTML = `
             <div class="text-center">
-              <p class="text-[11px] uppercase tracking-widest text-gray-400 font-bold mb-1">Vas a pagar</p>
+              <p class="text-xs uppercase tracking-widest text-gray-400 font-bold mb-1">Vas a pagar</p>
               <p class="font-heading text-3xl font-bold text-gradient mb-1">
                 AR$ ${Number(result.ars_amount).toLocaleString("es-AR")}
               </p>

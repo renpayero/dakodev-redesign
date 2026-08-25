@@ -1,0 +1,210 @@
+---
+// Franja de posicionamiento: traduce las tres capacidades transversales que ya
+// existen en /servicios/ a su consecuencia de negocio (menos horas, menos
+// costos, más margen). No inventa UI: reutiliza el patrón de card, el tile de
+// ícono y los mismos SVG de servicios.astro.
+const capacidades = [
+  {
+    label: "Inteligencia Artificial",
+    title: "Menos tiempo analizando",
+    description:
+      "Predicción de demanda, scoring de leads y asistentes que leen tus datos y señalan dónde mirar. El análisis deja de ser la tarea semanal de alguien.",
+    accent: {
+      text: "text-accent-cyan",
+      bgSoft: "bg-accent-cyan/10",
+      hover: "hover:border-accent-cyan/50",
+    },
+    icon: "ai",
+  },
+  {
+    label: "Automatización de Procesos",
+    title: "Menos horas repetitivas",
+    description:
+      "Aprobaciones, notificaciones, carga de datos y documentos que se generan solos. Las horas que hoy se van en tareas manuales vuelven al negocio.",
+    accent: {
+      text: "text-accent-blue",
+      bgSoft: "bg-accent-blue/10",
+      hover: "hover:border-accent-blue/50",
+    },
+    icon: "automation",
+  },
+  {
+    label: "Facturación Electrónica",
+    title: "Menos costo administrativo",
+    description:
+      "Facturación electrónica (AFIP y LATAM) dentro del mismo flujo, no en un sistema aparte. Sin doble carga, sin planillas puente y sin errores que corregir después.",
+    accent: {
+      text: "text-accent-teal",
+      bgSoft: "bg-accent-teal/10",
+      hover: "hover:border-accent-teal/50",
+    },
+    icon: "invoice",
+  },
+];
+---
+
+<section
+  id="automatizacion"
+  aria-labelledby="auto-heading"
+  class="py-20 relative overflow-hidden"
+>
+  <!-- Orbe decorativo, a la izquierda para balancear el de AboutSection -->
+  <div
+    class="absolute top-1/3 -left-40 w-[500px] h-[500px] bg-accent-teal/10 rounded-full blur-[100px] z-0 pointer-events-none"
+  >
+  </div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div
+      id="auto-header"
+      data-reveal
+      class="max-w-4xl mx-auto text-center mb-16 opacity-0 reveal-up-sm"
+    >
+      <span
+        class="text-accent-cyan font-bold tracking-widest uppercase text-sm mb-4 block"
+        >Innovación Aplicada</span
+      >
+      <h2
+        id="auto-heading"
+        class="font-heading text-4xl md:text-6xl font-bold mb-8 leading-tight"
+      >
+        El mejor proceso es <br class="hidden md:inline" />
+        <span class="text-gradient">el que nadie tiene que hacer.</span>
+      </h2>
+      <p
+        class="text-gray-400 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto"
+      >
+        Cada sistema que entregamos incluye IA y automatización integradas. No
+        son un módulo aparte: son la forma en que el software absorbe el trabajo
+        que hoy tu equipo hace a mano.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {
+        capacidades.map((c) => (
+          <div
+            data-reveal
+            class={`auto-card opacity-0 reveal-up glass p-8 rounded-3xl border border-white/10 ${c.accent.hover} transition-colors duration-500 group relative`}
+          >
+            <div
+              aria-hidden="true"
+              class={`w-14 h-14 ${c.accent.bgSoft} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+            >
+              {c.icon === "ai" && (
+                <svg
+                  class={`w-7 h-7 ${c.accent.text}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                  />
+                </svg>
+              )}
+              {c.icon === "automation" && (
+                <svg
+                  class={`w-7 h-7 ${c.accent.text}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
+                </svg>
+              )}
+              {c.icon === "invoice" && (
+                <svg
+                  class={`w-7 h-7 ${c.accent.text}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
+                </svg>
+              )}
+            </div>
+            <div
+              class={`text-xs font-bold uppercase tracking-widest ${c.accent.text} mb-3`}
+            >
+              {c.label}
+            </div>
+            <h3 class="font-heading text-2xl font-bold mb-3">{c.title}</h3>
+            <p class="text-gray-400 leading-relaxed">{c.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initAutomationAnimations = () => {
+    const root = document.getElementById("automatizacion");
+    if (!root) return;
+
+    // Guard idempotente: Astro dispara astro:page-load también en la carga
+    // inicial. El flag vive en el DOM porque View Transitions reemplaza el nodo.
+    if (root.dataset.animated === "true") {
+      ScrollTrigger.refresh();
+      return;
+    }
+    root.dataset.animated = "true";
+
+    // Con movimiento reducido el CSS ya deja todo visible.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    ScrollTrigger.getAll()
+      .filter((st: any) => st.vars?.id?.startsWith("auto-"))
+      .forEach((st) => st.kill());
+
+    gsap.to("#auto-header", {
+      scrollTrigger: {
+        id: "auto-header",
+        trigger: "#auto-header",
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      ease: "power3.out",
+    });
+
+    gsap.utils.toArray<HTMLElement>(".auto-card").forEach((card, i) => {
+      gsap.to(card, {
+        scrollTrigger: {
+          id: `auto-card-${i}`,
+          trigger: card,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+        y: 0,
+        opacity: 1,
+        duration: 0.9,
+        delay: i * 0.15,
+        ease: "back.out(1.5)",
+      });
+    });
+  };
+
+  document.addEventListener("astro:page-load", initAutomationAnimations);
+</script>

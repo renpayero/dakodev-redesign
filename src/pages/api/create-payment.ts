@@ -10,13 +10,13 @@ const PRODUCTS: Record<
   { title: string; description: string; usd: number }
 > = {
   crm: {
-    title: "Reserva DAKO・CRM",
+    title: "Reserva DAKO·CRM",
     description:
       "Reserva única — Despliegue del CRM y configuración de credenciales en menos de 24hs hábiles. Usuarios ilimitados.",
     usd: 300,
   },
   web: {
-    title: "Reserva DAKO・WEB",
+    title: "Reserva DAKO·WEB",
     description:
       "Reserva única para desarrollo de Landing / Sitio Institucional. Despliegue y relevamiento en menos de 24hs hábiles. (El plan mensual de hosting + soporte se coordina por separado.)",
     usd: 80,
