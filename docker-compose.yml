@@ -3,8 +3,6 @@ services:
     build: .
     container_name: dakodev-web
     restart: always
-    ports:
-      - "3060:3060"
     environment:
       - HOST=0.0.0.0
       - PORT=3060
@@ -13,10 +11,12 @@ services:
       - RESEND_API_KEY=${RESEND_API_KEY}
       - MP_ACCESS_TOKEN=${MP_ACCESS_TOKEN}
       - MP_WEBHOOK_SECRET=${MP_WEBHOOK_SECRET}
+    expose:
+      - "3060"
     networks:
       - npm
 
 networks:
   npm:
-    name: nginxproxymanager_default
+    name: npm_network
     external: true
