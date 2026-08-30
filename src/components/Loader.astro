@@ -39,6 +39,29 @@ import logoMark from "../assets/logo-mark.svg?raw";
   </div>
 </div>
 
+<style>
+  /* Red de seguridad que no depende de JavaScript. #loader es un overlay opaco en
+     z-100: si el módulo no llega a ejecutarse (chunk de GSAP caído, error de JS,
+     red muy lenta), el sitio queda tapado y sin salida, y el timeout de 8s no
+     ayuda porque vive dentro de ese mismo script. Esta animación lo retira igual.
+     initLoader() agrega .js-ok apenas arranca, así que en el camino normal esta
+     regla nunca llega a dispararse. */
+  @keyframes loader-failsafe {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  #loader {
+    animation: loader-failsafe 0.6s linear 9s forwards;
+  }
+
+  #loader.js-ok {
+    animation: none;
+  }
+</style>
+
 <script>
   import { gsap } from "gsap";
   import { TextPlugin } from "gsap/TextPlugin";
@@ -48,6 +71,10 @@ import logoMark from "../assets/logo-mark.svg?raw";
   const initLoader = () => {
     const loader = document.getElementById("loader");
     if (!loader) return;
+
+    // El módulo llegó a ejecutarse: a partir de acá el cierre del loader es
+    // responsabilidad del JS, así que se cancela la red de seguridad de CSS.
+    loader.classList.add("js-ok");
 
     // Con movimiento reducido el loader no debe tapar la pantalla 3,5s con una
     // animación que el usuario pidió no ver, y que además no puede interrumpir.
@@ -71,12 +98,20 @@ import logoMark from "../assets/logo-mark.svg?raw";
       return;
     }
 
-    // Si la pestaña se abrió en segundo plano (Ctrl+click, restaurar sesión),
-    // el navegador suspende requestAnimationFrame y GSAP no avanza: la
-    // animación quedaría congelada tapando el sitio. En ese caso no tiene
-    // sentido mostrar una intro que nadie está mirando.
+    // Si la pestaña no está visible (abierta en segundo plano, restaurar sesión,
+    // prerender de Chrome desde la barra de direcciones), el navegador suspende
+    // requestAnimationFrame y GSAP no avanza: la intro quedaría congelada tapando
+    // el sitio. Pero descartarla acá la mataba para siempre, porque este módulo es
+    // diferido y corre a los ~230ms, cuando la pestaña muy a menudo todavía no se
+    // mostró. En vez de eso esperamos a que la página se vuelva visible y la
+    // corremos ahí. No se escribe loader-ran: la intro queda pendiente, no gastada.
     if (document.visibilityState === "hidden") {
-      skipLoader();
+      document.addEventListener("visibilitychange", function onVisible() {
+        if (document.visibilityState === "visible") {
+          document.removeEventListener("visibilitychange", onVisible);
+          initLoader();
+        }
+      });
       return;
     }
 
